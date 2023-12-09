@@ -15,3 +15,4 @@ class Button:
     def button_quit_draw(self):
         pygame.draw.rect(self.display, (102, 102, 51), self.button_quit())
         self.display.blit(self.surf, (self.button_quit().x + 10, self.button_quit().y + 10))
+# test
