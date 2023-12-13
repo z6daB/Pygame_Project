@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from button import Button
+from select_window import *
 
 
 class Main:
@@ -11,9 +12,13 @@ class Main:
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
         self.button = Button()
+        self.select = Select()
 
     def run(self):
         running = True
+        self.button.button_quit_draw()
+        self.button.button_settings_draw()
+        self.button.button_play_draw()
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -25,9 +30,10 @@ class Main:
                         print('settings was open')
                     if self.button.button_play().collidepoint(event.pos):
                         print('Playing screen')
-            self.button.button_quit_draw()
-            self.button.button_settings_draw()
-            self.button.button_play_draw()
+                        self.display.blit(self.bg, (0, 0))
+
+
+            self.clock.tick(60)
             pygame.display.update()
 
 
