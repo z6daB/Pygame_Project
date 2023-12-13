@@ -21,7 +21,13 @@ class Main:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if self.button.button_quit().collidepoint(event.pos):
                         running = False
+                    if self.button.button_settings().collidepoint(event.pos):
+                        print('settings was open')
+                    if self.button.button_play().collidepoint(event.pos):
+                        print('Playing screen')
             self.button.button_quit_draw()
+            self.button.button_settings_draw()
+            self.button.button_play_draw()
             pygame.display.update()
 
 
