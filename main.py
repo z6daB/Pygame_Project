@@ -20,7 +20,7 @@ class Main:
         while running:
             self.select.run()
             self.clock.tick(60)
-            pygame.display.update()
+            pygame.display.flip()
 
 
 if __name__ == '__main__':

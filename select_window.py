@@ -28,10 +28,12 @@ class Select:
             if self.button.button_settings().collidepoint(event.pos):
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
-                self.playing_screen()
+                self.hero_choice()
 
 
 
-    def playing_screen(self):
+    def hero_choice(self):
         print('Playing screen')
+        black_human = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
         self.display.blit(self.bg, (0, 0))
+        self.display.blit(black_human, (150, 150))
