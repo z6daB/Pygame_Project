@@ -8,14 +8,16 @@ class Select:
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
-        #self.choose = ChooseCharacter(self.display, self.bg)
         self.button = Button()
-        self.button.button_quit_draw()
-        self.button.button_settings_draw()
-        self.button.button_play_draw()
+        self.draw_buttons()
 
     def run(self):
         self.event_loop()
+
+    def draw_buttons(self):
+        self.button.button_quit_draw()
+        self.button.button_settings_draw()
+        self.button.button_play_draw()
 
     def event_loop(self):
         for event in pygame.event.get():
