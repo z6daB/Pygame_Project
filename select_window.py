@@ -29,9 +29,9 @@ class Select:
                 pygame.QUIT
                 sys.exit()
             if self.button.button_settings().collidepoint(event.pos):
-                self.button.button_settings()
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
+                print('play')
                 self.draw_characters()
 
 
