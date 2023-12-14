@@ -9,6 +9,9 @@ class Select:
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
         self.button = Button()
+        self.button.button_quit_draw()
+        self.button.button_settings_draw()
+        self.button.button_play_draw()
 
     def run(self):
         self.event_loop()
@@ -26,14 +29,18 @@ class Select:
                 pygame.QUIT
                 sys.exit()
             if self.button.button_settings().collidepoint(event.pos):
+                self.button.button_settings()
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
-                self.hero_choice()
+                self.draw_characters()
 
 
 
-    def hero_choice(self):
-        print('Playing screen')
-        black_human = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
+    def draw_characters(self):
+        black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
+        woman = pygame.image.load('graphics/menu/characters/woman.png')
+        white_man = pygame.image.load('graphics/menu/characters/white_man.png')
         self.display.blit(self.bg, (0, 0))
-        self.display.blit(black_human, (150, 150))
+        self.display.blit(black_man, (150, 150))
+        self.display.blit(woman, (550, 150))
+        self.display.blit(white_man, (950, 150))
