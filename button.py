@@ -7,7 +7,6 @@ class Button:
         self.display = pygame.display.get_surface()
         self.font = pygame.font.Font('graphics/menu/font.ttf', 30)
 
-
     def button_quit(self):
         button_quit = pygame.Rect(WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 + 100, 135, 50)
         return button_quit

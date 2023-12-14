@@ -8,6 +8,7 @@ class Select:
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
+        #self.choose = ChooseCharacter(self.display, self.bg)
         self.button = Button()
         self.button.button_quit_draw()
         self.button.button_settings_draw()
@@ -32,9 +33,14 @@ class Select:
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
                 print('play')
-                self.draw_characters()
+                #self.display.blit(self.bg, (0, 0))
+                ChooseCharacter(self.display, self.bg)
 
-
+class ChooseCharacter:
+    def __init__(self, display, bg):
+        self.display = display
+        self.bg = bg
+        self.draw_characters()
 
     def draw_characters(self):
         black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
