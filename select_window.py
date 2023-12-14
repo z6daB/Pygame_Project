@@ -33,14 +33,25 @@ class Select:
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
                 print('play')
-                #self.display.blit(self.bg, (0, 0))
-                ChooseCharacter(self.display, self.bg)
+                ChooseCharacter()
 
 class ChooseCharacter:
-    def __init__(self, display, bg):
-        self.display = display
-        self.bg = bg
+    def __init__(self):
+        self.display = pygame.display.get_surface()
+        self.bg = pygame.image.load('graphics/menu/bg.jpg')
+        self.display.blit(self.bg, (0, 0))
+        self.run()
+
+    def run(self):
+        self.event_loop()
         self.draw_characters()
+
+    def event_loop(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print(111)
+                pygame.QUIT
+                sys.exit()
 
     def draw_characters(self):
         black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
