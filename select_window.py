@@ -3,6 +3,7 @@ import sys
 from button import *
 from main import *
 
+
 class Select:
     def __init__(self):
         self.display = pygame.display.get_surface()
@@ -36,6 +37,7 @@ class Select:
             if self.button.button_play().collidepoint(event.pos):
                 print('play')
                 ChooseCharacter()
+
 
 class ChooseCharacter:
     def __init__(self):
