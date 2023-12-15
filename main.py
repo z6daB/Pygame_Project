@@ -8,6 +8,7 @@ pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window
 import choose_character
 
+
 class Main:
     def __init__(self):
         self.display = pygame.display.get_surface()
@@ -24,4 +25,3 @@ class Main:
 if __name__ == '__main__':
     main = Main()
     main.run()
-    #tetst
