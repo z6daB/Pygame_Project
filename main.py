@@ -1,19 +1,23 @@
 import pygame
 from settings import *
 from button import Button
-from select_window import *
+from game_screens import dict_screens, current_screen
 
+pygame.init()
+pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+import select_window
+import choose_character
 
 class Main:
     def __init__(self):
-        pygame.init()
-        self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        global current_screen
+        self.display = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
-        self.select = Select()
+        current_screen = dict_screens['menu']
 
     def run(self):
         while True:
-            self.select.run()
+            current_screen.run()
             self.clock.tick(60)
             pygame.display.flip()
 
