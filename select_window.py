@@ -5,18 +5,14 @@ from game_screens import dict_screens, ChangeScreen
 from screen import GameScreen
 
 
-class Select (GameScreen):
+class Select(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
         self.button = Button()
-        self.draw_buttons()
 
-    def run(self):
-        self.event_loop()
-
-    def draw_buttons(self):
+    def draw(self):
         self.button.button_quit_draw()
         self.button.button_settings_draw()
         self.button.button_play_draw()
@@ -37,8 +33,7 @@ class Select (GameScreen):
                 print('settings was open')
             if self.button.button_play().collidepoint(event.pos):
                 print('play')
-                ChangeScreen(dict_screens['choose_char'])
-
+                ChangeScreen('choose_char')
 
 
 dict_screens['menu'] = Select()

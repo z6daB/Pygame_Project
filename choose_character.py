@@ -1,3 +1,4 @@
+import sys
 import pygame
 from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
@@ -8,11 +9,6 @@ class ChooseCharacter(GameScreen):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.display.blit(self.bg, (0, 0))
-        self.run()
-
-    def run(self):
-        self.event_loop()
-        self.draw_characters()
 
     def event_loop(self):
         for event in pygame.event.get():
@@ -20,7 +16,7 @@ class ChooseCharacter(GameScreen):
                 pygame.QUIT
                 sys.exit()
 
-    def draw_characters(self):
+    def draw(self):
         black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
         woman = pygame.image.load('graphics/menu/characters/woman.png')
         white_man = pygame.image.load('graphics/menu/characters/white_man.png')
