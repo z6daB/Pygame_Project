@@ -33,3 +33,12 @@ class Button:
         self.surf_play = self.font.render('Play', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_play())
         self.display.blit(self.surf_play, (self.button_play().x + 10, self.button_play().y + 10))
+
+    def button_back(self):
+        button_back = pygame.Rect(WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 + 100, 135, 50)
+        return button_back
+
+    def button_back_draw(self):
+        self.surf_back = self.font.render('Back', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_back())
+        self.display.blit(self.surf_back, (self.button_back().x + 10, self.button_back().y + 10))

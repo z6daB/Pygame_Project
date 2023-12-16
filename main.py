@@ -22,8 +22,8 @@ class Main:
     def run(self):
         while True:
             get_current_screen().run()
-            self.clock.tick(60)
             pygame.display.flip()
+            self.clock.tick(60)
 
 
 if __name__ == '__main__':
