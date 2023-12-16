@@ -30,9 +30,8 @@ class Select(GameScreen):
                 pygame.QUIT
                 sys.exit()
             if self.button.button_settings().collidepoint(event.pos):
-                print('settings was open')
+                ChangeScreen('settings_window')
             if self.button.button_play().collidepoint(event.pos):
-                print('play')
                 ChangeScreen('choose_char')
 
 

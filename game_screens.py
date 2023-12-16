@@ -2,8 +2,10 @@ dict_screens = {}
 
 current_screen = None
 
+
 def get_current_screen():
     return current_screen
+
 
 def ChangeScreen(screen_name):
     global current_screen
