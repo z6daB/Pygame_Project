@@ -17,6 +17,7 @@ class Main:
         surf = pygame.image.load('graphics/cursors/cursor.png').convert_alpha()
         cursor = pygame.cursors.Cursor((0, 0), surf)
         pygame.mouse.set_cursor(cursor)
+        pygame.display.set_caption('Battle Among the Ruins')
         ChangeScreen('menu')
 
     def run(self):
