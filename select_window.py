@@ -9,10 +9,10 @@ class Select(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
-        self.display.blit(self.bg, (0, 0))
         self.button = Button()
 
     def draw(self):
+        self.display.blit(self.bg, (0, 0))
         self.button.button_quit_draw()
         self.button.button_settings_draw()
         self.button.button_play_draw()

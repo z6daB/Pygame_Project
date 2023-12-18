@@ -22,9 +22,12 @@ class Settings(GameScreen):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.button.button_back().collidepoint(event.pos):
                 ChangeScreen('menu')
+            if self.button.button_check_mark().collidepoint(event.pos):
+                print('music off')
 
     def draw(self):
         self.display.blit(self.bg, (0, 0))
+        self.button.button_check_mark_draw()
         self.button.button_back_draw()
 
 

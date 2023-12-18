@@ -42,3 +42,12 @@ class Button:
         self.surf_back = self.font.render('Back', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_back())
         self.display.blit(self.surf_back, (self.button_back().x + 10, self.button_back().y + 10))
+
+    def button_check_mark(self):
+        check_mark_button = pygame.Rect(WINDOW_WIDTH / 2 + 25, WINDOW_HEIGHT / 2 - 35, 40, 40)
+        return check_mark_button
+
+    def button_check_mark_draw(self):
+        self.surf_check = self.font.render('Music', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_check_mark())
+        self.display.blit(self.surf_check, (WINDOW_WIDTH / 2 - 200, WINDOW_HEIGHT / 2 - 25))
