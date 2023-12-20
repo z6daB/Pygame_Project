@@ -3,6 +3,7 @@ import sys
 from button import *
 from game_screens import dict_screens, ChangeScreen
 from screen import GameScreen
+from music import *
 
 
 class Settings(GameScreen):
@@ -23,7 +24,7 @@ class Settings(GameScreen):
             if self.button.button_back().collidepoint(event.pos):
                 ChangeScreen('menu')
             if self.button.button_check_mark().collidepoint(event.pos):
-                print('music off')
+                change_status()
 
     def draw(self):
         self.display.blit(self.bg, (0, 0))
