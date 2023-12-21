@@ -20,14 +20,12 @@ class Select(GameScreen):
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.QUIT
                 sys.exit()
             self.check_buttons(event)
 
     def check_buttons(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.button.button_quit().collidepoint(event.pos):
-                pygame.QUIT
                 sys.exit()
             if self.button.button_settings().collidepoint(event.pos):
                 ChangeScreen('settings_window')
