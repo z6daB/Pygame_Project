@@ -51,3 +51,10 @@ class Button:
         self.surf_check = self.font.render('Music', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_check_mark())
         self.display.blit(self.surf_check, (WINDOW_WIDTH / 2 - 200, WINDOW_HEIGHT / 2 - 25))
+
+    #def black_man(self):
+        #black_man_button = pygame.Rect(150, 150, 192, 256)
+        #return black_man_button
+
+    #def draw_black_man(self):
+        #pygame.draw.rect(self.display, (0, 0, 0), self.black_man())

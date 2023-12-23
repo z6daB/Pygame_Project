@@ -5,6 +5,7 @@ pygame.mixer.music.play(1)
 pygame.mixer.music.set_volume(0.3)
 status = True
 
+
 def change_status():
     global status
     if status is True:
@@ -13,8 +14,10 @@ def change_status():
         status = True
     play_music(status)
 
+
 def get_status():
     return status
+
 
 def play_music(st):
     if st is True:
