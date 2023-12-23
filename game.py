@@ -20,4 +20,4 @@ class Game(GameScreen):
         self.display.blit(self.bg, (0, 0))
 
 
-dict_screens['game'] = Settings()
+dict_screens['game_window'] = Game()
