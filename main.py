@@ -1,6 +1,5 @@
 import pygame
 from settings import *
-from button import Button
 from game_screens import get_current_screen, ChangeScreen
 
 pygame.init()

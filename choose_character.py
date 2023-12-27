@@ -24,7 +24,7 @@ class ChooseCharacter(GameScreen):
                 ChangeScreen('level')
 
     def draw(self):
-        self.button.draw_black_man()
+        self.button.black_man_draw()
         black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
         woman = pygame.image.load('graphics/menu/characters/woman.png')
         white_man = pygame.image.load('graphics/menu/characters/white_man.png')

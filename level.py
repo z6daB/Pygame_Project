@@ -8,7 +8,6 @@ from screen import GameScreen
 class Level(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.button = Button()
 
     def event_loop(self):
         for event in pygame.event.get():

@@ -56,5 +56,5 @@ class Button:
         black_man_button = pygame.Rect(150, 150, 192, 256)
         return black_man_button
 
-    def draw_black_man(self):
+    def black_man_draw(self):
         pygame.draw.rect(self.display, (0, 0, 0), self.black_man())

@@ -8,10 +8,7 @@ status = True
 
 def change_status():
     global status
-    if status is True:
-        status = False
-    elif status is False:
-        status = True
+    status = not status
     play_music(status)
 
 
