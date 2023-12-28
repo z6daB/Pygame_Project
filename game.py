@@ -11,7 +11,8 @@ class Game:
         self.level = Level()
 
     def run(self):
-        self.level.run()
+        self.event_loop()
+        self.draw()
 
     def event_loop(self):
         for event in pygame.event.get():
@@ -20,6 +21,7 @@ class Game:
 
     def draw(self):
         self.display.fill('white')
+        self.level.run()
 
 
 dict_screens['game'] = Game()

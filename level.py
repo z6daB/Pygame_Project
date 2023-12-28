@@ -1,8 +1,6 @@
 import pygame
-import sys
-from button import *
-from game_screens import dict_screens, ChangeScreen
-from screen import GameScreen
+from settings import *
+from player import Player
 
 
 class Level:
@@ -12,5 +10,11 @@ class Level:
         self.visible_sprites = pygame.sprite.Group()
         self.invisible_sprites = pygame.sprite.Group()
 
+        self.create_player()
+
+    def create_player(self):
+        Player((100, 100), self.visible_sprites)
+
     def run(self):
-        pass
+        self.visible_sprites.draw(self.display)
+        self.visible_sprites.update()
