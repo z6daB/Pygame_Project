@@ -5,17 +5,12 @@ from game_screens import dict_screens, ChangeScreen
 from screen import GameScreen
 
 
-class Level(GameScreen):
+class Level:
     def __init__(self):
         self.display = pygame.display.get_surface()
+        # sprite groups
+        self.visible_sprites = pygame.sprite.Group()
+        self.invisible_sprites = pygame.sprite.Group()
 
-    def event_loop(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-    def draw(self):
-        self.display.fill('black')
-
-
-dict_screens['level'] = Level()
+    def run(self):
+        pass

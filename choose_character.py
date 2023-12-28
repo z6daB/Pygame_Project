@@ -15,13 +15,14 @@ class ChooseCharacter(GameScreen):
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
                 sys.exit()
             self.check_character(event)
 
     def check_character(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.button.black_man().collidepoint(event.pos):
-                ChangeScreen('level')
+                ChangeScreen('game')
 
     def draw(self):
         self.button.black_man_draw()

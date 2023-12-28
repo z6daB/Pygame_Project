@@ -8,6 +8,7 @@ import select_window
 import choose_character
 import settings_window
 import level
+import game
 
 
 class Main:
