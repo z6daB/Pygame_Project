@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 from game_screens import get_current_screen, ChangeScreen
-
+from change_cursor import change_cursor
 pygame.init()
 pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window
@@ -15,9 +15,7 @@ class Main:
     def __init__(self):
         self.display = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
-        surf = pygame.image.load('graphics/cursors/cursor.png').convert_alpha()
-        cursor = pygame.cursors.Cursor((0, 0), surf)
-        pygame.mouse.set_cursor(cursor)
+        change_cursor()
         pygame.display.set_caption('Battle Among the Ruins')
         ChangeScreen('menu')
 

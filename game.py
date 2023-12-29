@@ -3,6 +3,7 @@ import sys
 from game_screens import dict_screens, ChangeScreen
 from screen import GameScreen
 from level import Level
+from change_cursor import change_cursor_to_aim
 
 
 class Game:
@@ -11,6 +12,7 @@ class Game:
         self.level = Level()
 
     def run(self):
+        change_cursor_to_aim()
         self.event_loop()
         self.draw()
 
