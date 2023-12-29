@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('graphics/characters/black_character/soldier_walk1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.direction = pygame.math.Vector2()
-        self.speed = 4
+        self.speed = 5
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()
