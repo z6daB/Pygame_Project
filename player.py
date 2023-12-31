@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         self.display = pygame.display.get_surface()
         self.image = pygame.image.load('graphics/characters/black_character/soldier_walk1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -25)
+        self.hitbox = self.rect.inflate(0, 0)
 
         # создание переменной, отвечающей за направление
         self.direction = pygame.math.Vector2()
@@ -34,10 +34,9 @@ class Player(pygame.sprite.Sprite):
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
-        self.half_width = self.display.get_size()[0] // 2
-        if self.half_width - 40 <= self.hitbox.x + self.direction.x * speed <= 64 * 64 - 80 - self.half_width + 43:
-            self.hitbox.x += self.direction.x * speed
-            self.collision('horizontal')
+
+        self.hitbox.x += self.direction.x * speed
+        self.collision('horizontal')
 
         self.hitbox.y += self.direction.y * speed
         self.collision('vertical')
