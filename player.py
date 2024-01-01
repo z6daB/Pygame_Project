@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()
-        # определение направления куда смотрит герой
+        # определение направления куда двигается игрок
         if keys[pygame.K_UP]:
             self.direction.y = -1
         elif keys[pygame.K_DOWN]:
