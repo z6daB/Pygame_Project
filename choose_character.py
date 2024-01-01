@@ -3,6 +3,7 @@ import pygame
 from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
 from button import *
+from support import *
 
 
 class ChooseCharacter(GameScreen):
@@ -22,10 +23,15 @@ class ChooseCharacter(GameScreen):
     def check_character(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.button.black_man().collidepoint(event.pos):
+                set_character('black_man')
+                ChangeScreen('game')
+            elif self.button.white_man().collidepoint(event.pos):
+
                 ChangeScreen('game')
 
     def draw(self):
         self.button.black_man_draw()
+        self.button.white_man_draw()
         black_man = pygame.image.load('graphics/menu/characters/character_malePerson_behindBack.png')
         woman = pygame.image.load('graphics/menu/characters/woman.png')
         white_man = pygame.image.load('graphics/menu/characters/white_man.png')

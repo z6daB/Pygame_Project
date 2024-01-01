@@ -1,10 +1,16 @@
 import pygame
+from support import *
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, invisible_sprites):
         super().__init__(groups)
         self.display = pygame.display.get_surface()
+        # name = get_character()
+        # if name == 'black_man':
+        #     print('black')
+        # else:
+        #     print('white')
         self.image = pygame.image.load('graphics/characters/black_character/soldier_walk1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, 0)

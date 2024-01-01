@@ -3,6 +3,7 @@ from settings import *
 from player import Player
 from tile import Tile
 from imports import *
+from indicator_values import Interface
 
 class Level:
     def __init__(self):
@@ -22,10 +23,7 @@ class Level:
                         x = col_index * TILESIZE
                         y = row_index * TILESIZE
                         if style == 'border':
-                            Tile((x, y), [self.invisible_sprites], 'invisible')
-        #         if col == 'x':
-        #             Tile((x, y), [self.visible_sprites, self.invisible_sprites])
-        #         if col == 'p':
+                            Tile((x, y), self.invisible_sprites, 'invisible')
         self.player = Player((32 * 64, 32 * 64), self.visible_sprites, self.invisible_sprites)
 
     def run(self):
@@ -37,6 +35,7 @@ class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.display = pygame.display.get_surface()
+        self.interface = Interface()
         self.half_width = self.display.get_size()[0] // 2
         self.half_height = self.display.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
@@ -54,3 +53,4 @@ class CameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
+            self.interface.draw_hp()
