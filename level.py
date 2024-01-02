@@ -3,7 +3,6 @@ from settings import *
 from player import Player
 from tile import Tile
 from imports import *
-from interface import Interface
 
 
 class Level:
@@ -36,7 +35,6 @@ class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.display = pygame.display.get_surface()
-        self.interface = Interface()
         self.half_width = self.display.get_size()[0] // 2
         self.half_height = self.display.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
@@ -54,8 +52,3 @@ class CameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
-
-            # draw interface
-            self.interface.draw_hp()
-            self.interface.draw_water()
-            self.interface.draw_radiation()

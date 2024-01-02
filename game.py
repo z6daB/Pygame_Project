@@ -4,11 +4,13 @@ from game_screens import dict_screens, ChangeScreen
 from screen import GameScreen
 from level import Level
 from change_cursor import change_cursor_to_aim
+from interface import Interface
 
 
 class Game:
     def __init__(self):
         self.display = pygame.display.get_surface()
+        self.interface = Interface()
         self.level = Level()
 
     def run(self):
@@ -24,6 +26,11 @@ class Game:
     def draw(self):
         self.display.fill('white')
         self.level.run()
+
+        # draw interface
+        self.interface.draw_hp()
+        self.interface.draw_water()
+        self.interface.draw_radiation()
 
 
 dict_screens['game'] = Game()
