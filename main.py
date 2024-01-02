@@ -9,6 +9,7 @@ import choose_character
 import settings_window
 import level
 import game
+import loss_screen
 
 
 class Main:

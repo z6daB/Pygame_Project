@@ -24,7 +24,7 @@ class Button:
         self.surf_settings = self.font.render('Settings', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_settings())
         self.display.blit(self.surf_settings, (self.button_settings().x + 10, self.button_settings().y + 10))
-# test
+
     def button_play(self):
         button_play = pygame.Rect(WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 - 100, 150, 50)
         return button_play
@@ -65,4 +65,32 @@ class Button:
 
     def white_man_draw(self):
         pygame.draw.rect(self.display, (0, 0, 0), self.white_man())
+
+    def woman(self):
+        pass
+
+    def woman_draw(self):
+        pass
+
+    def menu_button(self):
+        menu_button = pygame.Rect(WINDOW_WIDTH // 2 - 140, WINDOW_HEIGHT // 2 - 50, 150, 50)
+        return menu_button
+
+    def menu_button_draw(self):
+        self.surf_menu = self.font.render('Menu', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.menu_button())
+        self.display.blit(self.surf_menu, (self.menu_button().x + 15, self.menu_button().y + 10))
+
+    def restart_button(self):
+        restart_button = pygame.Rect(WINDOW_WIDTH // 2 - 175, WINDOW_HEIGHT // 2 + 50, 230, 50)
+        return restart_button
+
+    def restart_button_draw(self):
+        self.surf_restart = self.font.render('Restart', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.restart_button())
+        self.display.blit(self.surf_restart, (self.restart_button().x + 15, self.restart_button().y + 10))
+
+    def dead_inscription(self):
+        self.surf_dead = self.font.render('You lost', True, 'Black')
+        self.display.blit(self.surf_dead, (WINDOW_WIDTH // 2 - 180, 200))
 

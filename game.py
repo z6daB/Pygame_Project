@@ -28,9 +28,8 @@ class Game:
         self.level.run()
 
         # draw interface
-        self.interface.draw_hp()
-        self.interface.draw_water()
-        self.interface.draw_radiation()
+        self.interface.draw_bars()
+        self.interface.update()
 
 
 dict_screens['game'] = Game()
