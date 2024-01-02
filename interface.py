@@ -33,5 +33,5 @@ class Interface:
             print('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
-                self.hp_value -= 50
+                self.hp_value -= 5
                 self.start_ticks = current_ticks
