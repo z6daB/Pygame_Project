@@ -3,7 +3,8 @@ from settings import *
 from player import Player
 from tile import Tile
 from imports import *
-from indicator_values import Interface
+from interface import Interface
+
 
 class Level:
     def __init__(self):
@@ -53,4 +54,8 @@ class CameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
+
+            # draw interface
             self.interface.draw_hp()
+            self.interface.draw_water()
+            self.interface.draw_radiation()
