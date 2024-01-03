@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-pygame.mixer.music.load('sounds/music_menu.mp3')
+pygame.mixer.music.load('../Pygame_Project-test/sounds/music_menu.mp3')
 pygame.mixer.music.play(1)
 pygame.mixer.music.set_volume(0.3)
 status = True

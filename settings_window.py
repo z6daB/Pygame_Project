@@ -9,8 +9,8 @@ from music import *
 class Settings(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.bg = pygame.image.load('graphics/menu/bg.jpg')
-        self.check_mark = pygame.image.load('graphics/menu/check_mark.png')
+        self.bg = pygame.image.load('../Pygame_Project-test/graphics/menu/bg.jpg')
+        self.check_mark = pygame.image.load('../Pygame_Project-test/graphics/menu/check_mark.png')
         self.button = Button()
 
     def event_loop(self):

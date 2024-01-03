@@ -5,7 +5,7 @@ from settings import *
 class Button:
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.font = pygame.font.Font('graphics/menu/font.ttf', 30)
+        self.font = pygame.font.Font('../Pygame_Project-test/graphics/menu/font.ttf', 30)
 
     def button_quit(self):
         button_quit = pygame.Rect(WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 + 100, 135, 50)
@@ -72,26 +72,36 @@ class Button:
         pygame.draw.rect(self.display, (102, 102, 51), self.button_check_mark())
         self.display.blit(self.surf_check, (WINDOW_WIDTH / 2 - 200, WINDOW_HEIGHT / 2 - 25))
 
-    def black_man(self):
-        black_man_button = pygame.Rect(150, 150, 192, 256)
-        return black_man_button
+    def button_black_man(self):
+        button_back = pygame.Rect(125, 170, 250, 350)
+        return button_back
 
-    def black_man_draw(self):
-        pygame.draw.rect(self.display, (0, 0, 0), self.black_man())
+    def button_black_man_draw(self):
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_black_man())
 
-    def white_man(self):
-        white_man_button = pygame.Rect(950, 150, 192, 256)
-        return white_man_button
+    def button_black_man_draw_hover(self):
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_black_man())
 
-    def white_man_draw(self):
-        pygame.draw.rect(self.display, (0, 0, 0), self.white_man())
+    def button_woman(self):
+        button_back = pygame.Rect(525, 170, 250, 350)
+        return button_back
 
-    def woman(self):
-        pass
+    def button_woman_draw(self):
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_woman())
 
-    def woman_draw(self):
-        pass
+    def button_woman_draw_hover(self):
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_woman())
 
+    def button_white_man(self):
+        button_back = pygame.Rect(925, 170, 250, 350)
+        return button_back
+
+    def button_white_man_draw(self):
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_white_man())
+
+    def button_white_man_draw_hover(self):
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_white_man())
+        
     def button_back2(self):
         button_back = pygame.Rect(0, WINDOW_HEIGHT-50, 135, 50)
         return button_back

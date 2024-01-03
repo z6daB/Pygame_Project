@@ -6,7 +6,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, invisible_sprites):
         super().__init__(groups)
         self.display = pygame.display.get_surface()
-        self.image = pygame.image.load('graphics/characters/black_character/soldier_walk1.png').convert_alpha()
+        self.image = pygame.image.load(
+            '../Pygame_Project-test/graphics/characters/black_character/soldier_walk1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -28)
 
