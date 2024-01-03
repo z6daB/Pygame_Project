@@ -4,10 +4,7 @@ from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
 from button import *
 from support import *
-<<<<<<< HEAD
-=======
 from settings import *
->>>>>>> Stepan
 
 
 class ChooseCharacter(GameScreen):
@@ -25,11 +22,8 @@ class ChooseCharacter(GameScreen):
 
     def check_character(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-<<<<<<< HEAD
-=======
             if self.button.button_back2().collidepoint(event.pos):
                 ChangeScreen('menu')
->>>>>>> Stepan
             if self.button.black_man().collidepoint(event.pos):
                 set_character('black_man')
                 ChangeScreen('game')
@@ -47,8 +41,6 @@ class ChooseCharacter(GameScreen):
         self.display.blit(black_man, (150, 150))
         self.display.blit(woman, (550, 150))
         self.display.blit(white_man, (950, 150))
-<<<<<<< HEAD
-=======
         
         self.font = pygame.font.Font('graphics/menu/font.ttf', 30)
         self.surf_back = self.font.render('Выбор Персонажа', True, 'Black')
@@ -59,7 +51,6 @@ class ChooseCharacter(GameScreen):
             self.button.button_back_draw_hover2()
         else:
             self.button.button_back_draw2()
->>>>>>> Stepan
 
 
 dict_screens['choose_char'] = ChooseCharacter()
