@@ -16,6 +16,7 @@ class Settings(GameScreen):
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
                 sys.exit()
             self.check_buttons(event)
 
@@ -29,7 +30,10 @@ class Settings(GameScreen):
     def draw(self):
         self.display.blit(self.bg, (0, 0))
         self.button.button_check_mark_draw()
-        self.button.button_back_draw()
+        if self.button.button_back().collidepoint(pygame.mouse.get_pos()):
+            self.button.button_back_draw_hover()
+        else:
+            self.button.button_back_draw()
         if get_status():
             self.display.blit(self.check_mark, (WINDOW_WIDTH / 2 + 30, WINDOW_HEIGHT / 2 - 30))
 

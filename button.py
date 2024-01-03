@@ -16,6 +16,11 @@ class Button:
         pygame.draw.rect(self.display, (102, 102, 51), self.button_quit())
         self.display.blit(self.surf_quit, (self.button_quit().x + 10, self.button_quit().y + 10))
 
+    def button_quit_draw_hover(self):
+        self.surf_quit = self.font.render('Quit', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_quit())
+        self.display.blit(self.surf_quit, (self.button_quit().x + 10, self.button_quit().y + 10))
+
     def button_settings(self):
         button_settings = pygame.Rect(WINDOW_WIDTH / 2 - 165, WINDOW_HEIGHT / 2, 250, 50)
         return button_settings
@@ -23,6 +28,11 @@ class Button:
     def button_settings_draw(self):
         self.surf_settings = self.font.render('Settings', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_settings())
+        self.display.blit(self.surf_settings, (self.button_settings().x + 10, self.button_settings().y + 10))
+
+    def button_settings_draw_hover(self):
+        self.surf_settings = self.font.render('Settings', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_settings())
         self.display.blit(self.surf_settings, (self.button_settings().x + 10, self.button_settings().y + 10))
 
     def button_play(self):
@@ -34,6 +44,11 @@ class Button:
         pygame.draw.rect(self.display, (102, 102, 51), self.button_play())
         self.display.blit(self.surf_play, (self.button_play().x + 10, self.button_play().y + 10))
 
+    def button_play_draw_hover(self):
+        self.surf_play = self.font.render('Play', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_play())
+        self.display.blit(self.surf_play, (self.button_play().x + 10, self.button_play().y + 10))
+
     def button_back(self):
         button_back = pygame.Rect(WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 + 100, 135, 50)
         return button_back
@@ -41,6 +56,11 @@ class Button:
     def button_back_draw(self):
         self.surf_back = self.font.render('Back', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.button_back())
+        self.display.blit(self.surf_back, (self.button_back().x + 10, self.button_back().y + 10))
+
+    def button_back_draw_hover(self):
+        self.surf_back = self.font.render('Back', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_back())
         self.display.blit(self.surf_back, (self.button_back().x + 10, self.button_back().y + 10))
 
     def button_check_mark(self):
@@ -71,6 +91,20 @@ class Button:
 
     def woman_draw(self):
         pass
+
+    def button_back2(self):
+        button_back = pygame.Rect(0, WINDOW_HEIGHT-50, 135, 50)
+        return button_back
+
+    def button_back_draw2(self):
+        self.surf_back = self.font.render('Back', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_back2())
+        self.display.blit(self.surf_back, (self.button_back2().x + 10, self.button_back2().y + 10))
+
+    def button_back_draw_hover2(self):
+        self.surf_back = self.font.render('Back', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_back2())
+        self.display.blit(self.surf_back, (self.button_back2().x + 10, self.button_back2().y + 10))
 
     def menu_button(self):
         menu_button = pygame.Rect(WINDOW_WIDTH // 2 - 140, WINDOW_HEIGHT // 2 - 50, 150, 50)
