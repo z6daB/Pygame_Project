@@ -89,9 +89,6 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(
                 '../Pygame_Project-test/graphics/characters/black_character/soldier_idle.png').convert_alpha()
 
-
-
-
     def update(self):
         self.keyboard_buttons()
         self.move(self.speed)
