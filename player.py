@@ -1,13 +1,14 @@
 import pygame
-from support import *
+from support import get_character
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, invisible_sprites):
         super().__init__(groups)
         self.display = pygame.display.get_surface()
+        self.folder = 'black_man'
         self.image = pygame.image.load(
-            'graphics/characters/black_character/right/soldier_walk1.png').convert_alpha()
+            'graphics/characters/' + self.folder + '/right/1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -28)
 
@@ -71,24 +72,31 @@ class Player(pygame.sprite.Sprite):
             if self.frame > 3:
                 self.frame -= 3
             images = [
-                'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
+                '1.png', '2.png', '3.png', '4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/black_character/right/' + images[int(self.frame)]).convert_alpha()
+                'graphics/characters/' + self.folder + '/right/' + images[int(self.frame)]).convert_alpha()
         elif self.direction.x < 0:
             self.frame += 0.2
             if self.frame > 3:
                 self.frame -= 3
             images = [
-                'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
+                '1.png', '2.png', '3.png', '4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/black_character/left/' + images[int(self.frame)]).convert_alpha()
+                'graphics/characters/' + self.folder + '/left/' + images[int(self.frame)]).convert_alpha()
         else:
             self.image = pygame.image.load(
-                'graphics/characters/black_character/soldier_idle.png').convert_alpha()
+                'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
 
     def update(self):
         self.keyboard_buttons()
         self.move(self.speed)
         self.animation()
+        name = get_character()
+        if name == 'woman':
+            self.folder = 'woman'
+        elif name == 'white_man':
+            self.folder = 'white_man'
+        elif name == 'black_man':
+            self.folder = 'black_man'

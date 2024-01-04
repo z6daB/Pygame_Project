@@ -29,10 +29,10 @@ class ChooseCharacter(GameScreen):
                 set_character('black_man')
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
-                set_character('black_man')
+                set_character('woman')
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
-                set_character('black_man')
+                set_character('white_man')
                 ChangeScreen('load')
 
     def draw(self):
