@@ -6,6 +6,7 @@ pygame.init()
 pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window
 import choose_character
+import loading
 import settings_window
 import level
 import game

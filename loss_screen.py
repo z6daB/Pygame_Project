@@ -23,7 +23,7 @@ class DeadWindow(GameScreen):
             if self.button.menu_button().collidepoint(event.pos):
                 ChangeScreen('menu')
             elif self.button.restart_button().collidepoint(event.pos):
-                ChangeScreen('game')
+                ChangeScreen('load')
 
     def draw(self):
         self.display.blit(self.bg, (0, 0))

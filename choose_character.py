@@ -27,13 +27,13 @@ class ChooseCharacter(GameScreen):
                 ChangeScreen('menu')
             if self.button.button_black_man().collidepoint(event.pos):
                 set_character('black_man')
-                ChangeScreen('game')
+                ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
                 set_character('black_man')
-                ChangeScreen('game')
+                ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
                 set_character('black_man')
-                ChangeScreen('game')
+                ChangeScreen('load')
 
     def draw(self):
         black_man = pygame.image.load(
