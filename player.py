@@ -65,7 +65,8 @@ class Player(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
     def animation(self):
-        if self.direction.x > 0:
+        if self.direction.x > 0 and self.direction.y != 0 \
+                or self.direction.x == 0 and self.direction.y != 0 or self.direction.x > 0:
             self.frame += 0.2
             if self.frame > 3:
                 self.frame -= 3
@@ -73,8 +74,7 @@ class Player(pygame.sprite.Sprite):
                 'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/black_character/right/' +
-                images[int(self.frame)]).convert_alpha()
+                'graphics/characters/black_character/right/' + images[int(self.frame)]).convert_alpha()
         elif self.direction.x < 0:
             self.frame += 0.2
             if self.frame > 3:
@@ -83,8 +83,7 @@ class Player(pygame.sprite.Sprite):
                 'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/black_character/left/' +
-                images[int(self.frame)]).convert_alpha()
+                'graphics/characters/black_character/left/' + images[int(self.frame)]).convert_alpha()
         else:
             self.image = pygame.image.load(
                 'graphics/characters/black_character/soldier_idle.png').convert_alpha()
