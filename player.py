@@ -73,7 +73,7 @@ class Player(pygame.sprite.Sprite):
                 'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
             ]
             self.image = pygame.image.load(
-                '../Pygame_Project-test/graphics/characters/black_character/right/' +
+                'graphics/characters/black_character/right/' +
                 images[int(self.frame)]).convert_alpha()
         elif self.direction.x < 0:
             self.frame += 0.2
@@ -83,11 +83,11 @@ class Player(pygame.sprite.Sprite):
                 'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
             ]
             self.image = pygame.image.load(
-                '../Pygame_Project-test/graphics/characters/black_character/left/' +
+                'graphics/characters/black_character/left/' +
                 images[int(self.frame)]).convert_alpha()
         else:
             self.image = pygame.image.load(
-                '../Pygame_Project-test/graphics/characters/black_character/soldier_idle.png').convert_alpha()
+                'graphics/characters/black_character/soldier_idle.png').convert_alpha()
 
     def update(self):
         self.keyboard_buttons()

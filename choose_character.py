@@ -10,7 +10,7 @@ from drawer import *
 class ChooseCharacter(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.bg = pygame.image.load('../Pygame_Project-test/graphics/menu/bg.jpg')
+        self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.button = Button()
         self.drawer = Drawer()
 
@@ -37,9 +37,9 @@ class ChooseCharacter(GameScreen):
 
     def draw(self):
         black_man = pygame.image.load(
-            '../Pygame_Project-test/graphics/menu/characters/character_malePerson_behindBack.png')
-        woman = pygame.image.load('../Pygame_Project-test/graphics/menu/characters/woman.png')
-        white_man = pygame.image.load('../Pygame_Project-test/graphics/menu/characters/white_man.png')
+            'graphics/menu/characters/character_malePerson_behindBack.png')
+        woman = pygame.image.load('graphics/menu/characters/woman.png')
+        white_man = pygame.image.load('graphics/menu/characters/white_man.png')
         self.display.blit(self.bg, (0, 0))
         #black_man
         if self.button.button_black_man().collidepoint(pygame.mouse.get_pos()):
