@@ -40,7 +40,7 @@ class CameraGroup(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
 
         # загрузка карты
-        self.floor = pygame.image.load('../Pygame_Project-test/map/map.png').convert()
+        self.floor = pygame.image.load('map/map.png').convert()
         self.floor_rect = self.floor.get_rect(topleft=(0, 0))
 
     def custom_draw(self, player):

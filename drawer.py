@@ -5,10 +5,10 @@ from settings import *
 class Drawer:
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.font = pygame.font.Font('../Pygame_Project-test/graphics/menu/font.ttf', 12)
+        self.font = pygame.font.Font('graphics/menu/font.ttf', 12)
         
     def drawer_text(self, size_font, text, color, pos):
-        self.font = pygame.font.Font('../Pygame_Project-test/graphics/menu/font.ttf', size_font)
+        self.font = pygame.font.Font('graphics/menu/font.ttf', size_font)
         self.surf_back = self.font.render(text, True, color)
         self.display.blit(self.surf_back, pos)
 
