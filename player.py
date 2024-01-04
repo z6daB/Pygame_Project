@@ -7,13 +7,15 @@ class Player(pygame.sprite.Sprite):
         super().__init__(groups)
         self.display = pygame.display.get_surface()
         self.image = pygame.image.load(
-            '../Pygame_Project-test/graphics/characters/black_character/soldier_walk1.png').convert_alpha()
+            'graphics/characters/black_character/right/soldier_walk1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -28)
 
         # создание переменной, отвечающей за направление
         self.direction = pygame.math.Vector2()
         self.speed = 5
+
+        self.frame = 0
 
         self.invisible_sprites = invisible_sprites
 
@@ -62,6 +64,35 @@ class Player(pygame.sprite.Sprite):
                     if self.direction.y < 0:
                         self.hitbox.top = sprite.hitbox.bottom
 
+    def animation(self):
+        if self.direction.x > 0:
+            self.frame += 0.2
+            if self.frame > 3:
+                self.frame -= 3
+            images = [
+                'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
+            ]
+            self.image = pygame.image.load(
+                '../Pygame_Project-test/graphics/characters/black_character/right/' +
+                images[int(self.frame)]).convert_alpha()
+        elif self.direction.x < 0:
+            self.frame += 0.2
+            if self.frame > 3:
+                self.frame -= 3
+            images = [
+                'soldier_walk1.png', 'soldier_walk2.png', 'soldier_walk3.png', 'soldier_walk4.png'
+            ]
+            self.image = pygame.image.load(
+                '../Pygame_Project-test/graphics/characters/black_character/left/' +
+                images[int(self.frame)]).convert_alpha()
+        else:
+            self.image = pygame.image.load(
+                '../Pygame_Project-test/graphics/characters/black_character/soldier_idle.png').convert_alpha()
+
+
+
+
     def update(self):
         self.keyboard_buttons()
         self.move(self.speed)
+        self.animation()
