@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(
             'graphics/characters/' + self.folder + '/right/1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -28)
+        self.hitbox = self.rect.inflate(0, 0)
 
         # создание переменной, отвечающей за направление
         self.direction = pygame.math.Vector2()
@@ -88,8 +88,9 @@ class Player(pygame.sprite.Sprite):
         else:
             self.image = pygame.image.load(
                 'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
+
     def get_coords(self):
-        return self.hitbox.x, self.hitbox.y
+        return self.hitbox.x
 
     def update(self):
         self.keyboard_buttons()

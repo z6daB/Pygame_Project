@@ -29,7 +29,7 @@ class Level:
         self.zombie = Zombie((1000, 1000), self.visible_sprites, self.invisible_sprites)
 
     def run(self):
-        print(self.player.get_coords())
+        # print(self.player.get_coords())
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
