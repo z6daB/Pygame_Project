@@ -5,14 +5,12 @@ from tile import Tile
 from imports import *
 from zombie import Zombie
 
-
 class Level:
     def __init__(self):
         self.display = pygame.display.get_surface()
         # sprite groups
         self.visible_sprites = CameraGroup()
         self.invisible_sprites = pygame.sprite.Group()
-
         self.create_map()
 
     def create_map(self):
@@ -36,7 +34,6 @@ class Level:
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
 
-
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
@@ -44,7 +41,7 @@ class CameraGroup(pygame.sprite.Group):
         self.half_width = self.display.get_size()[0] // 2
         self.half_height = self.display.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
-
+        
         # загрузка карты
         self.floor = pygame.image.load('map/map.png').convert()
         self.floor_rect = self.floor.get_rect(topleft=(0, 0))
@@ -52,7 +49,6 @@ class CameraGroup(pygame.sprite.Group):
     def custom_draw(self, player):
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
-
         floor_offset = self.floor_rect.topleft - self.offset
         self.display.blit(self.floor, floor_offset)
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
