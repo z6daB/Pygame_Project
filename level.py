@@ -5,6 +5,7 @@ from tile import Tile
 from imports import *
 from zombie import Zombie
 
+
 class Level:
     def __init__(self):
         self.display = pygame.display.get_surface()
@@ -33,6 +34,7 @@ class Level:
         print(self.zombie.direction)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
+
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
