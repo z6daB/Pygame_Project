@@ -29,9 +29,9 @@ class Level:
         self.zombie = Zombie((1000, 1100), self.visible_sprites, self.invisible_sprites)
 
     def run(self):
+        self.visible_sprites.custom_draw(self.player)
         self.zombie.get_distance_x(self.player.get_x())
         self.zombie.get_distance_y(self.player.get_y())
-        self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
 

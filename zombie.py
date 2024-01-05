@@ -17,14 +17,13 @@ class Zombie(pygame.sprite.Sprite):
     def get_distance_x(self, x):
         if self.hitbox.x - x == 200 or self.hitbox.x - x == -200:
             self.direction.x = 0
-
         elif self.hitbox.x - x > 0:
             self.direction.x = -1
         elif self.hitbox.x - x < 0:
             self.direction.x = 1
 
     def get_distance_y(self, y):
-        if self.hitbox.y - y == 200 or self.hitbox.y - y == -200:
+        if self.hitbox.y - y == 200 or self.hitbox.y - y == -200 or self.hitbox.y - y == 0:
             self.direction.y = 0
         elif self.hitbox.y - y > 0:
             self.direction.y = -1

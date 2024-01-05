@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(
             'graphics/characters/' + self.folder + '/right/1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, 0)
+        self.hitbox = self.rect.inflate(0, -28)
 
         # создание переменной, отвечающей за направление
         self.direction = pygame.math.Vector2()
