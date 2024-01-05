@@ -89,13 +89,17 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(
                 'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
 
-    def get_coords(self):
+    def get_x(self):
         return self.hitbox.x
+
+    def get_y(self):
+        return self.hitbox.y
 
     def update(self):
         self.keyboard_buttons()
         self.move(self.speed)
         self.animation()
+
         name = get_character()
         if name == 'woman':
             self.folder = 'woman'
