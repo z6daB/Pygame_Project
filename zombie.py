@@ -7,15 +7,17 @@ class Zombie(pygame.sprite.Sprite):
         self.display = pygame.display.get_surface()
         self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -28)
+        self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
+                                  self.rect.width, self.rect.height // 2)
 
         self.direction = pygame.math.Vector2()
+        self.zombie_position = pygame.math.Vector2(pos)
         self.speed = 3
 
         self.invisible_sprites = invisible_sprites
 
     def get_distance_x(self, x):
-        if self.hitbox.x - x == 200 or self.hitbox.x - x == -200:
+        if self.hitbox.x - x <= 50 and self.hitbox.x - x >= -50:
             self.direction.x = 0
         elif self.hitbox.x - x > 0:
             self.direction.x = -1
@@ -23,7 +25,7 @@ class Zombie(pygame.sprite.Sprite):
             self.direction.x = 1
 
     def get_distance_y(self, y):
-        if self.hitbox.y - y == 200 or self.hitbox.y - y == -200 or self.hitbox.y - y == 0:
+        if self.hitbox.y - y <= 50 and self.hitbox.y - y >= -50:
             self.direction.y = 0
         elif self.hitbox.y - y > 0:
             self.direction.y = -1
@@ -35,11 +37,15 @@ class Zombie(pygame.sprite.Sprite):
             self.direction = self.direction.normalize()
 
         self.hitbox.x += self.direction.x * speed
+        self.zombie_position.x += self.direction.x * speed
         self.collision('horizontal')
 
         self.hitbox.y += self.direction.y * speed
+        self.zombie_position.y += self.direction.y * speed
         self.collision('vertical')
-        self.rect.center = self.hitbox.center
+
+        self.rect.bottom = self.hitbox.bottom
+        self.rect.left = self.hitbox.left
 
     def collision(self, direction):
         # проверка на столкновение с объектами

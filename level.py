@@ -32,6 +32,7 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         self.zombie.get_distance_x(self.player.get_x())
         self.zombie.get_distance_y(self.player.get_y())
+        print(self.zombie.direction)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
 

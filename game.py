@@ -25,7 +25,6 @@ class Game:
                 sys.exit()
 
     def draw(self):
-        self.display.fill('white')
         self.level.run()
 
         # draw interface

@@ -10,10 +10,12 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(
             'graphics/characters/' + self.folder + '/right/1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -28)
+        self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
+                                  self.rect.width, self.rect.height // 2)
 
         # создание переменной, отвечающей за направление
         self.direction = pygame.math.Vector2()
+        self.person_position = pygame.math.Vector2(pos)
         self.speed = 5
 
         self.frame = 0
@@ -41,11 +43,14 @@ class Player(pygame.sprite.Sprite):
             self.direction = self.direction.normalize()
 
         self.hitbox.x += self.direction.x * speed
+        self.person_position.x += self.direction.x * speed
         self.collision('horizontal')
 
         self.hitbox.y += self.direction.y * speed
+        self.person_position.y += self.direction.y * speed
         self.collision('vertical')
-        self.rect.center = self.hitbox.center
+        self.rect.bottom = self.hitbox.bottom
+        self.rect.left = self.hitbox.left
 
     def collision(self, direction):
         # проверка на столкновение с объектами
@@ -90,10 +95,10 @@ class Player(pygame.sprite.Sprite):
                 'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
 
     def get_x(self):
-        return self.hitbox.x
+        return self.person_position.x
 
     def get_y(self):
-        return self.hitbox.y
+        return self.person_position.y
 
     def update(self):
         self.keyboard_buttons()
