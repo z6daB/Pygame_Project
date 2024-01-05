@@ -3,6 +3,7 @@ from settings import *
 from player import Player
 from tile import Tile
 from imports import *
+from zombie import Zombie
 
 
 class Level:
@@ -25,9 +26,12 @@ class Level:
                         if style == 'border':
                             Tile((x, y), self.invisible_sprites, 'invisible')
         self.player = Player((32 * 64, 32 * 64), self.visible_sprites, self.invisible_sprites)
+        self.zombie = Zombie((1000, 1000), self.visible_sprites, self.invisible_sprites)
 
     def run(self):
+        print(self.player.get_coords())
         self.visible_sprites.custom_draw(self.player)
+        self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
 
 

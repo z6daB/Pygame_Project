@@ -88,6 +88,8 @@ class Player(pygame.sprite.Sprite):
         else:
             self.image = pygame.image.load(
                 'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
+    def get_coords(self):
+        return self.hitbox.x, self.hitbox.y
 
     def update(self):
         self.keyboard_buttons()
