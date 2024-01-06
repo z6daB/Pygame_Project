@@ -12,6 +12,7 @@ class Zombie(Creature):
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
         self.invisible_sprites = invisible_sprites
+
         self.visibility_radius = 200
         self.damage_radius = 30
 

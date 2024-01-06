@@ -62,6 +62,7 @@ class CameraGroup(pygame.sprite.Group):
             self.display.blit(sprite.image, offset_pos)
 
     def zombie_update(self, player):
-        zombie_sprites = [sprite for sprite in self.sprites() if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'zombie']
+        zombie_sprites = [sprite for sprite in self.sprites()
+                          if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'zombie']
         for zombie in zombie_sprites:
             zombie.zombie_update(player)
