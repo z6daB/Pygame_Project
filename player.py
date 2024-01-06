@@ -1,26 +1,20 @@
 import pygame
 from support import get_character
+from creature import Creature
 
 
-class Player(pygame.sprite.Sprite):
+class Player(Creature):
     def __init__(self, pos, groups, invisible_sprites):
         super().__init__(groups)
-        self.display = pygame.display.get_surface()
         self.folder = 'black_man'
-        self.image = pygame.image.load(
-            'graphics/characters/' + self.folder + '/right/1.png').convert_alpha()
+        self.image = pygame.image.load(f'graphics/characters/{self.folder}/right/1.png').convert_alpha()
+
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
-
-        # создание переменной, отвечающей за направление
-        self.direction = pygame.math.Vector2()
         self.person_position = pygame.math.Vector2(pos)
-        self.speed = 5
-
-        self.frame = 0
-
         self.invisible_sprites = invisible_sprites
+        self.speed = 7
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()
@@ -38,38 +32,6 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-    def move(self, speed):
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
-
-        self.hitbox.x += self.direction.x * speed
-        self.person_position.x += self.direction.x * speed
-        self.collision('horizontal')
-
-        self.hitbox.y += self.direction.y * speed
-        self.person_position.y += self.direction.y * speed
-        self.collision('vertical')
-        self.rect.bottom = self.hitbox.bottom
-        self.rect.left = self.hitbox.left
-
-    def collision(self, direction):
-        # проверка на столкновение с объектами
-        if direction == 'horizontal':
-            for sprite in self.invisible_sprites:
-                if sprite.hitbox.colliderect(self.hitbox):
-                    if self.direction.x > 0:
-                        self.hitbox.right = sprite.hitbox.left
-                    if self.direction.x < 0:
-                        self.hitbox.left = sprite.hitbox.right
-
-        if direction == 'vertical':
-            for sprite in self.invisible_sprites:
-                if sprite.hitbox.colliderect(self.hitbox):
-                    if self.direction.y > 0:
-                        self.hitbox.bottom = sprite.hitbox.top
-                    if self.direction.y < 0:
-                        self.hitbox.top = sprite.hitbox.bottom
-
     def animation(self):
         if self.direction.x > 0 and self.direction.y != 0 \
                 or self.direction.x == 0 and self.direction.y != 0 or self.direction.x > 0:
@@ -80,7 +42,8 @@ class Player(pygame.sprite.Sprite):
                 '1.png', '2.png', '3.png', '4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/' + self.folder + '/right/' + images[int(self.frame)]).convert_alpha()
+                f'graphics/characters/{self.folder}/right/{images[int(self.frame)]}').convert_alpha()
+
         elif self.direction.x < 0:
             self.frame += 0.2
             if self.frame > 3:
@@ -89,16 +52,9 @@ class Player(pygame.sprite.Sprite):
                 '1.png', '2.png', '3.png', '4.png'
             ]
             self.image = pygame.image.load(
-                'graphics/characters/' + self.folder + '/left/' + images[int(self.frame)]).convert_alpha()
+                f'graphics/characters/{self.folder}/left/{images[int(self.frame)]}').convert_alpha()
         else:
-            self.image = pygame.image.load(
-                'graphics/characters/' + self.folder + '/idle.png').convert_alpha()
-
-    def get_x(self):
-        return self.person_position.x
-
-    def get_y(self):
-        return self.person_position.y
+            self.image = pygame.image.load(f'graphics/characters/{self.folder}/idle.png').convert_alpha()
 
     def update(self):
         self.keyboard_buttons()

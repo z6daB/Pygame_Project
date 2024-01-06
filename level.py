@@ -15,7 +15,10 @@ class Level:
         self.create_map()
 
     def create_map(self):
-        layouts = {'border': import_csv('map/map_Blocked.csv')}
+        layouts = {
+            'border': import_csv('map/map_Blocked.csv'),
+            'creature': import_csv('map/map_creature.csv')
+        }
         for style, layout in layouts.items():
             for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
@@ -24,14 +27,15 @@ class Level:
                         y = row_index * TILESIZE
                         if style == 'border':
                             Tile((x, y), self.invisible_sprites, 'invisible')
-        self.player = Player((32 * 64, 32 * 64), self.visible_sprites, self.invisible_sprites)
-        self.zombie = Zombie((1000, 1100), self.visible_sprites, self.invisible_sprites)
+                        if style == 'creature':
+                            if col == '0':
+                                self.player = Player((x, y), self.visible_sprites, self.invisible_sprites)
+                            else:
+                                Zombie((x, y), self.visible_sprites, self.invisible_sprites)
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)
-        self.zombie.get_distance_x(self.player.get_x())
-        self.zombie.get_distance_y(self.player.get_y())
-        print(self.zombie.direction)
+        self.visible_sprites.zombie_update(self.player)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
 
@@ -56,3 +60,8 @@ class CameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
+
+    def zombie_update(self, player):
+        zombie_sprites = [sprite for sprite in self.sprites() if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'zombie']
+        for zombie in zombie_sprites:
+            zombie.zombie_update(player)
