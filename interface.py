@@ -19,7 +19,7 @@ class Interface:
         self.count = 1
         self.stats = black_man
 
-    def draw_bars(self, player):
+    def draw_bars(self):
         self.hp_value = self.stats['hp_value']
         self.water_value = self.stats['water_value']
         self.radiation_value = self.stats['radiation_value']
@@ -50,7 +50,7 @@ class Interface:
         pygame.draw.rect(
             self.display, (255, 222, 0), (400, 45, 100 * self.memories_value, 55)
         )
-        #count
+        # count
         self.drawer.drawer_text(12, f'{self.hp_value} / 100', 'White', (75, 605))
         self.drawer.drawer_text(12, f'{self.water_value} / 100', 'White', (75, 635))
         self.drawer.drawer_text(12, f'{self.radiation_value} / 100', 'White', (75, 665))
@@ -69,7 +69,8 @@ class Interface:
         pygame.draw.rect(self.display, (131, 131, 89), (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 120, 256, 128))
         self.weapon = pygame.image.load('graphics/weapons/stick.png')
         self.display.blit(self.weapon, (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 115))
-        self.drawer.drawer_text(15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+        self.drawer.drawer_text(
+            15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
 
     def check_person(self):
         name = get_character()

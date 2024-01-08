@@ -40,7 +40,7 @@ class Level:
         self.visible_sprites.zombie_update(self.player)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
-        self.interface.draw_bars(self.player)
+        self.interface.draw_bars()
         self.interface.update()
 
 
