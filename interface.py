@@ -9,7 +9,6 @@ from drawer import Drawer
 class Interface:
     def __init__(self):
         self.display = pygame.display.get_surface()
-
         self.memories_value = 4
         self.cnt_bullet = 15
         self.cnt_bullet_max = 30
@@ -18,9 +17,9 @@ class Interface:
         self.minimap = pygame.image.load('map/minimap.png').convert()
         self.drawer = Drawer()
         self.count = 1
+        self.stats = black_man
 
     def draw_bars(self, player):
-        self.stats = player.get_stats()
         self.hp_value = self.stats['hp_value']
         self.water_value = self.stats['water_value']
         self.radiation_value = self.stats['radiation_value']
@@ -75,14 +74,11 @@ class Interface:
     def check_person(self):
         name = get_character()
         if name == 'woman':
-            self.stats['hp_value'] = 100
-            self.stats['water_value'] = 100
+            self.stats = woman
         elif name == 'white_man':
-            self.stats['hp_value'] = 100
-            self.stats['water_value'] = 20
+            self.stats = white_man
         elif name == 'black_man':
-            self.stats['hp_value'] = 80
-            self.stats['water_value'] = 60
+            self.stats = black_man
 
     def update(self):
         if self.count == 1:

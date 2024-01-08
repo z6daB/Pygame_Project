@@ -1,4 +1,5 @@
 import pygame
+from settings import *
 from support import get_character
 from creature import Creature
 
@@ -12,13 +13,7 @@ class Player(Creature):
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
         self.invisible_sprites = invisible_sprites
-        self.stats = {
-            'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed' : 7
-        }
-        self.speed = self.stats['speed']
-
-    def get_stats(self):
-        return self.stats
+        self.speed = 7
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()
