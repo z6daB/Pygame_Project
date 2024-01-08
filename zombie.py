@@ -8,6 +8,7 @@ class Zombie(Creature):
         self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
         self.sprite_type = 'zombie'
         self.status = 'stop'
+
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)

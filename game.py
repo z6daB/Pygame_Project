@@ -28,8 +28,8 @@ class Game:
         self.level.run()
 
         # draw interface
-        self.interface.draw_bars()
-        self.interface.update()
+        # self.interface.draw_bars()
+        # self.interface.update()
 
 
 dict_screens['game'] = Game()

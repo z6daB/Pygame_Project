@@ -8,13 +8,17 @@ class Player(Creature):
         super().__init__(groups)
         self.folder = 'black_man'
         self.image = pygame.image.load(f'graphics/characters/{self.folder}/right/1.png').convert_alpha()
-
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
-        self.person_position = pygame.math.Vector2(pos)
         self.invisible_sprites = invisible_sprites
-        self.speed = 7
+        self.stats = {
+            'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed' : 7
+        }
+        self.speed = self.stats['speed']
+
+    def get_stats(self):
+        return self.stats
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()

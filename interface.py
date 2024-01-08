@@ -5,12 +5,11 @@ from support import get_character
 from game_screens import dict_screens, ChangeScreen
 from drawer import Drawer
 
+
 class Interface:
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.hp_value = 100
-        self.water_value = 100
-        self.radiation_value = 0
+
         self.memories_value = 4
         self.cnt_bullet = 15
         self.cnt_bullet_max = 30
@@ -20,7 +19,11 @@ class Interface:
         self.drawer = Drawer()
         self.count = 1
 
-    def draw_bars(self):
+    def draw_bars(self, player):
+        self.stats = player.get_stats()
+        self.hp_value = self.stats['hp_value']
+        self.water_value = self.stats['water_value']
+        self.radiation_value = self.stats['radiation_value']
         # draw bg
         pygame.draw.rect(
             self.display, (63, 64, 62), (20, 600, 200, HEALTH_HEIGHT)
@@ -72,26 +75,14 @@ class Interface:
     def check_person(self):
         name = get_character()
         if name == 'woman':
-            self.hp_value = 100
-            self.water_value = 100
+            self.stats['hp_value'] = 100
+            self.stats['water_value'] = 100
         elif name == 'white_man':
-            self.hp_value = 100
-            self.water_value = 20
+            self.stats['hp_value'] = 100
+            self.stats['water_value'] = 20
         elif name == 'black_man':
-            self.hp_value = 80
-            self.water_value = 60
-
-    def check_person(self):
-        name = get_character()
-        if name == 'woman':
-            self.hp_value = 100
-            self.water_value = 100
-        elif name == 'white_man':
-            self.hp_value = 100
-            self.water_value = 20
-        elif name == 'black_man':
-            self.hp_value = 80
-            self.water_value = 60
+            self.stats['hp_value'] = 80
+            self.stats['water_value'] = 60
 
     def update(self):
         if self.count == 1:
@@ -104,13 +95,13 @@ class Interface:
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
                 if self.water_value > 0:
-                    self.water_value -= 1
+                    self.stats['water_value'] -= 1
                 elif self.water_value <= 0:
-                    self.hp_value -= 1
+                    self.stats['hp_value'] -= 1
 
                 if self.radiation_value < 100:
-                    self.radiation_value += 5
+                    self.stats['radiation_value'] += 5
                 elif self.radiation_value == 100:
-                    self.hp_value -= 1
+                    self.stats['hp_value'] -= 1
 
                 self.start_ticks = current_ticks

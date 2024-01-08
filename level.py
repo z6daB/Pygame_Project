@@ -4,6 +4,7 @@ from player import Player
 from tile import Tile
 from imports import *
 from zombie import Zombie
+from interface import Interface
 
 
 class Level:
@@ -13,6 +14,7 @@ class Level:
         self.visible_sprites = CameraGroup()
         self.invisible_sprites = pygame.sprite.Group()
         self.create_map()
+        self.interface = Interface()
 
     def create_map(self):
         layouts = {
@@ -38,6 +40,8 @@ class Level:
         self.visible_sprites.zombie_update(self.player)
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
+        self.interface.draw_bars(self.player)
+        self.interface.update()
 
 
 class CameraGroup(pygame.sprite.Group):
