@@ -8,14 +8,15 @@ class Zombie(Creature):
         self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
         self.sprite_type = 'zombie'
         self.status = 'stop'
+        self.atack = False
 
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
         self.invisible_sprites = invisible_sprites
 
-        self.visibility_radius = 200
-        self.damage_radius = 30
+        self.visibility_radius = 250
+        self.damage_radius = 10
 
         self.speed = 6
 
@@ -31,10 +32,15 @@ class Zombie(Creature):
 
     def get_status(self, player):
         length = self.get_player_lenght_direction(player)[0]
-        if length <= self.visibility_radius:
+        if length <= self.damage_radius:
+            self.status = 'damage'
+            self.atack = True
+        elif length <= self.visibility_radius:
             self.status = 'move'
+            self.atack = False
         else:
             self.status = 'stop'
+            self.atack = False
 
     def actions(self, player):
         if self.status == 'move':
@@ -46,18 +52,27 @@ class Zombie(Creature):
         images = [
             '1.png', '2.png', '3.png', '4.png'
         ]
-        if self.direction.x > 0 and self.direction.y != 0 or self.direction.x == 0 \
-                and self.direction.y != 0 or self.direction.x > 0:
-            self.frame += 0.2
-            if self.frame > 3:
-                self.frame -= 3
-            self.image = pygame.image.load(f'graphics/zombie/right/{images[int(self.frame)]}').convert_alpha()
-        elif self.direction.x < 0:
-            self.frame += 0.2
-            if self.frame > 3:
-                self.frame -= 3
-            self.image = pygame.image.load(f'graphics/zombie/left/{images[int(self.frame)]}').convert_alpha()
-        else:
+        if self.status == 'move':
+            if self.direction.x > 0 and self.direction.y != 0 or self.direction.x == 0 \
+                    and self.direction.y != 0 or self.direction.x > 0:
+                self.frame += 0.2
+                if self.frame > 3:
+                    self.frame -= 3
+                self.image = pygame.image.load(f'graphics/zombie/right/{images[int(self.frame)]}').convert_alpha()
+            elif self.direction.x < 0:
+                self.frame += 0.2
+                if self.frame > 3:
+                    self.frame -= 3
+                self.image = pygame.image.load(f'graphics/zombie/left/{images[int(self.frame)]}').convert_alpha()
+
+        elif self.status == 'damage':
+            if self.atack:
+                self.frame += 0.2
+                if self.frame > 3:
+                    self.frame -= 3
+                self.image = pygame.image.load(f'graphics/zombie/atack/{images[int(self.frame)]}').convert_alpha()
+
+        elif self.status == 'stop':
             self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
 
     def update(self):
