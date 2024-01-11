@@ -32,14 +32,14 @@ class Player(Creature):
             self.direction.x = 0
 
     def animation(self):
+        images = [
+            '1.png', '2.png', '3.png', '4.png'
+        ]
         if self.direction.x > 0 and self.direction.y != 0 \
                 or self.direction.x == 0 and self.direction.y != 0 or self.direction.x > 0:
             self.frame += 0.2
             if self.frame > 3:
                 self.frame -= 3
-            images = [
-                '1.png', '2.png', '3.png', '4.png'
-            ]
             self.image = pygame.image.load(
                 f'graphics/characters/{self.folder}/right/{images[int(self.frame)]}').convert_alpha()
 
@@ -47,9 +47,6 @@ class Player(Creature):
             self.frame += 0.2
             if self.frame > 3:
                 self.frame -= 3
-            images = [
-                '1.png', '2.png', '3.png', '4.png'
-            ]
             self.image = pygame.image.load(
                 f'graphics/characters/{self.folder}/left/{images[int(self.frame)]}').convert_alpha()
         else:
