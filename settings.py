@@ -14,11 +14,11 @@ RADIATION_HEIGHT = 20
 
 # hero statistics dictionaries
 white_man = {
-    'hp_value': 100, 'water_value': 20, 'radiation_value': 0, 'speed': 7
+    'hp_value': 100, 'water_value': 20, 'radiation_value': 0, 'speed': 7, 'name': 'white_man'
 }
 black_man = {
-    'hp_value': 80, 'water_value': 60, 'radiation_value': 0, 'speed': 7
+    'hp_value': 80, 'water_value': 60, 'radiation_value': 0, 'speed': 7, 'name': 'black_man'
 }
 woman = {
-    'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed': 7
+    'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed': 7, 'name': 'woman'
 }

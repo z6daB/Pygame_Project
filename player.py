@@ -12,6 +12,7 @@ class Player(Creature):
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
+
         self.invisible_sprites = invisible_sprites
         self.speed = 7
 

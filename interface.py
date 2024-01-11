@@ -10,12 +10,16 @@ class Interface:
     def __init__(self):
         self.display = pygame.display.get_surface()
         self.memories_value = 4
+
         self.cnt_bullet = 15
         self.cnt_bullet_max = 30
+
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
+
         self.minimap = pygame.image.load('map/minimap.png').convert()
         self.drawer = Drawer()
+
         self.count = 1
         self.stats = black_man
 
@@ -74,6 +78,9 @@ class Interface:
 
     def check_person(self):
         name = get_character()
+        self.set_stats(name)
+
+    def set_stats(self, name):
         if name == 'woman':
             self.stats = woman
         elif name == 'white_man':
@@ -88,6 +95,9 @@ class Interface:
         current_ticks = pygame.time.get_ticks()
         if self.hp_value <= 0:
             self.hp_value = 100
+            self.water_value = 100
+            self.radiation_value = 0
+
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:

@@ -1,5 +1,6 @@
 import pygame
 from creature import Creature
+from settings import *
 
 
 class Zombie(Creature):
@@ -7,8 +8,9 @@ class Zombie(Creature):
         super().__init__(groups)
         self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
         self.sprite_type = 'zombie'
+
         self.status = 'stop'
-        self.atack = False
+        self.attack_status = False
 
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
@@ -19,6 +21,11 @@ class Zombie(Creature):
         self.damage_radius = 10
 
         self.speed = 6
+
+        self.start_ticks = pygame.time.get_ticks()
+        self.tick_interval = 5000
+
+        self.count = 1
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)
@@ -34,13 +41,13 @@ class Zombie(Creature):
         length = self.get_player_lenght_direction(player)[0]
         if length <= self.damage_radius:
             self.status = 'damage'
-            self.atack = True
+            self.attack_status = True
         elif length <= self.visibility_radius:
             self.status = 'move'
-            self.atack = False
+            self.attack_status = False
         else:
             self.status = 'stop'
-            self.atack = False
+            self.attack_status = False
 
     def actions(self, player):
         if self.status == 'move':
@@ -66,18 +73,29 @@ class Zombie(Creature):
                 self.image = pygame.image.load(f'graphics/zombie/left/{images[int(self.frame)]}').convert_alpha()
 
         elif self.status == 'damage':
-            if self.atack:
+            if self.attack_status is True:
                 self.frame += 0.2
                 if self.frame > 3:
                     self.frame -= 3
-                self.image = pygame.image.load(f'graphics/zombie/atack/{images[int(self.frame)]}').convert_alpha()
+                self.image = pygame.image.load(f'graphics/zombie/attack/{images[int(self.frame)]}').convert_alpha()
 
         elif self.status == 'stop':
             self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
 
+    def attack(self):
+        print('damage')
+
+    def delay(self):
+        attack_ticks = pygame.time.get_ticks()
+        if attack_ticks - self.start_ticks > self.tick_interval:
+            if self.attack_status and self.status == 'damage':
+                self.attack()
+                self.start_ticks = attack_ticks
+
     def update(self):
         self.move(self.speed)
         self.animation()
+        self.delay()
 
     def zombie_update(self, player):
         self.get_status(player)
