@@ -91,11 +91,13 @@ class Interface:
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
+                # проверка уровня воды
                 if self.water_value > 0:
                     self.stats['water_value'] -= 1
                 elif self.water_value <= 0:
                     self.stats['hp_value'] -= 1
 
+                # проверка уровня радиации
                 if self.radiation_value < 100:
                     self.stats['radiation_value'] += 5
                 elif self.radiation_value == 100:

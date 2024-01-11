@@ -14,11 +14,8 @@ class Creature(pygame.sprite.Sprite):
             self.direction = self.direction.normalize()
 
         self.hitbox.x += self.direction.x * speed
-        # self.person_position.x += self.direction.x * speed
         self.collision('horizontal')
-
         self.hitbox.y += self.direction.y * speed
-        # self.person_position.y += self.direction.y * speed
         self.collision('vertical')
         self.rect.bottom = self.hitbox.bottom
         self.rect.left = self.hitbox.left
