@@ -93,15 +93,10 @@ class Interface:
             self.reset_stats = black_man_reset
         set_stats(name)
 
-    def update(self):
-        if self.count == 1:
-            self.check_person()
-            self.count += 1
+    def update_stats(self):
         current_ticks = pygame.time.get_ticks()
         if self.hp_value <= 0:
-            self.stats = self.reset_stats
-
-            print(self.stats)
+            self.stats = self.reset_stats.copy()
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
@@ -118,3 +113,10 @@ class Interface:
                     self.stats['hp_value'] -= 1
 
                 self.start_ticks = current_ticks
+
+    def update(self):
+        if self.count == 1:
+            self.check_person()
+            self.count += 1
+        self.update_stats()
+
