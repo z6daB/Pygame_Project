@@ -1,6 +1,7 @@
 import pygame
 from creature import Creature
 from settings import *
+from support import get_stats
 
 
 class Zombie(Creature):
@@ -26,6 +27,10 @@ class Zombie(Creature):
         self.tick_interval = 5000
 
         self.count = 1
+
+        self.stats = black_man
+        self.reset_stats = black_man_reset
+        self.dict_name = self.stats['name']
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)
@@ -83,7 +88,13 @@ class Zombie(Creature):
             self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
 
     def attack(self):
+        # print(self.stats)
+        if self.stats['hp_value'] > 0 :
+            self.stats['hp_value'] -= 50
+        else:
+            self.stats = self.reset_stats
         print('damage')
+        print(self.reset_stats)
 
     def delay(self):
         attack_ticks = pygame.time.get_ticks()
@@ -93,6 +104,17 @@ class Zombie(Creature):
                 self.start_ticks = attack_ticks
 
     def update(self):
+        self.stats = get_stats()
+        if self.stats == 'black_man':
+            self.stats = black_man
+            self.reset_stats = black_man_reset
+        elif self.stats == 'white_man':
+            self.stats = white_man
+            self.reset_stats = white_man_reset
+        else:
+            self.stats = woman
+            self.reset_stats = woman_reset
+
         self.move(self.speed)
         self.animation()
         self.delay()

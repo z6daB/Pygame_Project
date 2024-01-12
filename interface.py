@@ -1,7 +1,7 @@
 import time
 import pygame
 from settings import *
-from support import get_character
+from support import get_character, set_stats
 from game_screens import dict_screens, ChangeScreen
 from drawer import Drawer
 
@@ -22,6 +22,7 @@ class Interface:
 
         self.count = 1
         self.stats = black_man
+        self.reset_stats = black_man_reset
 
     def draw_bars(self):
         self.hp_value = self.stats['hp_value']
@@ -83,10 +84,14 @@ class Interface:
     def set_stats(self, name):
         if name == 'woman':
             self.stats = woman
+            self.reset_stats = woman_reset
         elif name == 'white_man':
             self.stats = white_man
+            self.reset_stats = white_man_reset
         elif name == 'black_man':
             self.stats = black_man
+            self.reset_stats = black_man_reset
+        set_stats(name)
 
     def update(self):
         if self.count == 1:
@@ -94,10 +99,9 @@ class Interface:
             self.count += 1
         current_ticks = pygame.time.get_ticks()
         if self.hp_value <= 0:
-            self.hp_value = 100
-            self.water_value = 100
-            self.radiation_value = 0
+            self.stats = self.reset_stats
 
+            print(self.stats)
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:

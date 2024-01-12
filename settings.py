@@ -22,3 +22,14 @@ black_man = {
 woman = {
     'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed': 7, 'name': 'woman'
 }
+
+# hero reset dictionaries
+white_man_reset = {
+    'hp_value': 100, 'water_value': 20, 'radiation_value': 0, 'speed': 7, 'name': 'white_man'
+}
+black_man_reset = {
+    'hp_value': 80, 'water_value': 60, 'radiation_value': 0, 'speed': 7, 'name': 'black_man'
+}
+woman_reset = {
+    'hp_value': 100, 'water_value': 100, 'radiation_value': 0, 'speed': 7, 'name': 'woman'
+}
