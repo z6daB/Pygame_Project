@@ -41,6 +41,7 @@ class Level:
         self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
         self.interface.draw_bars()
+        self.interface.draw_minimap(self.player)
         self.interface.update()
 
 

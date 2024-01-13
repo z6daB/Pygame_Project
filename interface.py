@@ -61,10 +61,6 @@ class Interface:
         self.drawer.drawer_text(12, f'{self.radiation_value} / 100', 'White', (75, 665))
         self.drawer.drawer_text(24, f'{self.memories_value} / 5', 'White', (575, 60))
 
-        # minimap
-        self.display.blit(self.minimap, (2, 2))
-        pygame.draw.rect(self.display, (255, 255, 255), (0, 0, 260, 260), 2)
-
         # inventory
         pygame.draw.circle(self.display, (131, 131, 89), (WINDOW_WIDTH-60, 60), 40)
         self.inventory = pygame.image.load('map/inventory.png')
@@ -76,6 +72,15 @@ class Interface:
         self.display.blit(self.weapon, (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 115))
         self.drawer.drawer_text(
             15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+
+    def draw_minimap(self, player):
+        coords = player.get_coords()
+        print(coords)
+        x = coords[0]
+        y = coords[1]
+        self.display.blit(self.minimap, (2, 2))
+        pygame.draw.circle(self.display, (255, 0, 0), (x // 20, y // 20), 5)
+        pygame.draw.rect(self.display, (255, 255, 255), (0, 0, 260, 260), 2)
 
     def check_person(self):
         name = get_character()
@@ -118,4 +123,3 @@ class Interface:
             self.check_person()
             self.count += 1
         self.update_stats()
-

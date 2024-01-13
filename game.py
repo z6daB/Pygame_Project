@@ -27,9 +27,5 @@ class Game:
     def draw(self):
         self.level.run()
 
-        # draw interface
-        # self.interface.draw_bars()
-        # self.interface.update()
-
 
 dict_screens['game'] = Game()
