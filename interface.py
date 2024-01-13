@@ -1,7 +1,7 @@
 import time
 import pygame
 from settings import *
-from support import get_character, set_stats
+from support import get_character, set_stats, get_stats
 from game_screens import dict_screens, ChangeScreen
 from drawer import Drawer
 
@@ -91,11 +91,10 @@ class Interface:
         elif name == 'black_man':
             self.stats = black_man
             self.reset_stats = black_man_reset
-        set_stats(name)
 
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
-        if self.hp_value <= 0:
+        if self.stats['hp_value'] <= 0:
             self.stats = self.reset_stats.copy()
             ChangeScreen('dead')
         else:

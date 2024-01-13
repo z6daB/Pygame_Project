@@ -88,13 +88,11 @@ class Zombie(Creature):
             self.image = pygame.image.load('graphics/zombie/zombie_idle.png').convert_alpha()
 
     def attack(self):
-        # print(self.stats)
-        if self.stats['hp_value'] > 0 :
+        if self.stats['hp_value'] > 0:
             self.stats['hp_value'] -= 50
-        else:
-            self.stats = self.reset_stats.copy()
-        print('damage')
+
         print(self.stats)
+        print('damage')
 
     def delay(self):
         attack_ticks = pygame.time.get_ticks()
@@ -107,13 +105,25 @@ class Zombie(Creature):
         self.stats = get_stats()
         if self.stats == 'black_man':
             self.stats = black_man
-            self.reset_stats = black_man_reset
+            if self.stats['hp_value'] > 0:
+                self.stats = black_man
+            else:
+                self.stats = black_man_reset.copy()
+            self.reset_stats = black_man_reset.copy()
         elif self.stats == 'white_man':
             self.stats = white_man
-            self.reset_stats = white_man_reset
+            if self.stats['hp_value'] > 0:
+                self.stats = white_man
+            else:
+                self.stats = white_man_reset.copy()
+            self.reset_stats = white_man_reset.copy()
         else:
             self.stats = woman
-            self.reset_stats = woman_reset
+            if self.stats['hp_value'] > 0:
+                self.stats = woman
+            else:
+                self.stats = woman_reset.copy()
+            self.reset_stats = woman_reset.copy()
 
     def update(self):
         self.update_stats()

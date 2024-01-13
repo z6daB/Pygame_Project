@@ -7,6 +7,7 @@ from support import *
 from settings import *
 from drawer import *
 
+
 class ChooseCharacter(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
@@ -27,12 +28,15 @@ class ChooseCharacter(GameScreen):
                 ChangeScreen('menu')
             if self.button.button_black_man().collidepoint(event.pos):
                 set_character('black_man')
+                set_stats('black_man')
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
                 set_character('woman')
+                set_stats('woman')
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
                 set_character('white_man')
+                set_stats('white_man')
                 ChangeScreen('load')
 
     def draw(self):
