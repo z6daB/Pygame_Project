@@ -8,13 +8,15 @@ from interface import Interface
 
 
 class Level:
-    def __init__(self):
+    def __init__(self, game):
         self.display = pygame.display.get_surface()
         # sprite groups
         self.visible_sprites = CameraGroup()
         self.invisible_sprites = pygame.sprite.Group()
+        self.game = game
+        self.zombies = []
         self.create_map()
-        self.interface = Interface()
+        self.interface = Interface(game)
 
     def create_map(self):
         layouts = {
@@ -31,18 +33,23 @@ class Level:
                             Tile((x, y), self.invisible_sprites, 'invisible')
                         if style == 'creature':
                             if col == '0':
-                                self.player = Player((x, y), self.visible_sprites, self.invisible_sprites)
+                                self.player_spawn = (x, y)
                             else:
-                                Zombie((x, y), self.visible_sprites, self.invisible_sprites)
+                                self.zombies.append(Zombie((x, y), self.visible_sprites, self.invisible_sprites, self.game))
+
+
+    def spawn_player(self, player):
+        self.player = player
+        self.player.spawn(self.player_spawn)
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)
-        self.visible_sprites.zombie_update(self.player)
-        self.visible_sprites.draw(self.display)
+        for zombie in self.zombies:
+            zombie.zombie_update(self.player)
+        #self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
         self.interface.draw_bars()
-        self.interface.draw_minimap(self.player)
-        self.interface.update()
+        self.interface.draw_minimap()
 
 
 class CameraGroup(pygame.sprite.Group):
@@ -66,8 +73,3 @@ class CameraGroup(pygame.sprite.Group):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
 
-    def zombie_update(self, player):
-        zombie_sprites = [sprite for sprite in self.sprites()
-                          if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'zombie']
-        for zombie in zombie_sprites:
-            zombie.zombie_update(player)

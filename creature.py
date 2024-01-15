@@ -2,12 +2,16 @@ import pygame
 
 
 class Creature(pygame.sprite.Sprite):
-    def __init__(self, groups):
+    def __init__(self, hp_value, groups, game):
         super().__init__(groups)
         self.display = pygame.display.get_surface()
         self.direction = pygame.math.Vector2()
-
+        self.game = game
+        self.hp_value = hp_value
         self.frame = 0
+
+    def get_damage(self, damage):
+        self.hp_value -= damage
 
     def move(self, speed):
         if self.direction.magnitude() != 0:

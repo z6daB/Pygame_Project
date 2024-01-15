@@ -7,7 +7,9 @@ from drawer import Drawer
 
 
 class Interface:
-    def __init__(self):
+    def __init__(self, game):
+        self.game = game
+
         self.display = pygame.display.get_surface()
         self.memories_value = 4
 
@@ -21,13 +23,8 @@ class Interface:
         self.drawer = Drawer()
 
         self.count = 1
-        self.stats = black_man
-        self.reset_stats = black_man_reset
 
     def draw_bars(self):
-        self.hp_value = self.stats['hp_value']
-        self.water_value = self.stats['water_value']
-        self.radiation_value = self.stats['radiation_value']
         # draw bg
         pygame.draw.rect(
             self.display, (63, 64, 62), (20, 600, 200, HEALTH_HEIGHT)
@@ -44,21 +41,21 @@ class Interface:
 
         # draw real bars
         pygame.draw.rect(
-            self.display, (255, 0, 0), (20, 600, HEALTH_WIDTH * self.hp_value, HEALTH_HEIGHT)
+            self.display, (255, 0, 0), (20, 600, HEALTH_WIDTH * self.game.level.player.hp_value, HEALTH_HEIGHT)
         )
         pygame.draw.rect(
-            self.display, (0, 0, 255), (20, 630, WATER_WIDTH * self.water_value, WATER_HEIGHT)
+            self.display, (0, 0, 255), (20, 630, WATER_WIDTH * self.game.level.player.water_value, WATER_HEIGHT)
         )
         pygame.draw.rect(
-            self.display, (42, 255, 4), (20, 660, RADIATION_WIDTH * self.radiation_value, RADIATION_HEIGHT)
+            self.display, (42, 255, 4), (20, 660, RADIATION_WIDTH * self.game.level.player.radiation_value, RADIATION_HEIGHT)
         )
         pygame.draw.rect(
             self.display, (255, 222, 0), (400, 45, 100 * self.memories_value, 55)
         )
         # count
-        self.drawer.drawer_text(12, f'{self.hp_value} / 100', 'White', (75, 605))
-        self.drawer.drawer_text(12, f'{self.water_value} / 100', 'White', (75, 635))
-        self.drawer.drawer_text(12, f'{self.radiation_value} / 100', 'White', (75, 665))
+        self.drawer.drawer_text(12, f'{self.game.level.player.hp_value} / 100', 'White', (75, 605))
+        self.drawer.drawer_text(12, f'{self.game.level.player.water_value} / 100', 'White', (75, 635))
+        self.drawer.drawer_text(12, f'{self.game.level.player.radiation_value} / 100', 'White', (75, 665))
         self.drawer.drawer_text(24, f'{self.memories_value} / 5', 'White', (575, 60))
 
         # inventory
@@ -73,8 +70,8 @@ class Interface:
         self.drawer.drawer_text(
             15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
 
-    def draw_minimap(self, player):
-        coords = player.get_coords()
+    def draw_minimap(self):
+        coords = self.game.level.player.get_coords()
         print(coords)
         x = coords[0]
         y = coords[1]
@@ -82,44 +79,25 @@ class Interface:
         pygame.draw.circle(self.display, (255, 0, 0), (x // 20, y // 20), 5)
         pygame.draw.rect(self.display, (255, 255, 255), (0, 0, 260, 260), 2)
 
-    def check_person(self):
-        name = get_character()
-        self.set_stats(name)
-
-    def set_stats(self, name):
-        if name == 'woman':
-            self.stats = woman
-            self.reset_stats = woman_reset
-        elif name == 'white_man':
-            self.stats = white_man
-            self.reset_stats = white_man_reset
-        elif name == 'black_man':
-            self.stats = black_man
-            self.reset_stats = black_man_reset
-
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
-        if self.stats['hp_value'] <= 0:
-            self.stats = self.reset_stats.copy()
+        if self.game.level.player.hp_value <= 0:
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
                 # проверка уровня воды
-                if self.water_value > 0:
-                    self.stats['water_value'] -= 1
-                elif self.water_value <= 0:
-                    self.stats['hp_value'] -= 1
+                if self.game.level.player.water_value > 0:
+                    self.game.level.player.water_value -= 1
+                elif self.game.level.player.water_value <= 0:
+                    self.game.level.player.get_damage(1)
 
                 # проверка уровня радиации
-                if self.radiation_value < 100:
-                    self.stats['radiation_value'] += 5
-                elif self.radiation_value == 100:
-                    self.stats['hp_value'] -= 1
+                if self.game.level.player.radiation_value < 100:
+                    self.game.level.player.radiation_value += 5
+                elif self.game.level.player.radiation_value == 100:
+                    self.game.level.player.get_damage(1)
 
                 self.start_ticks = current_ticks
 
     def update(self):
-        if self.count == 1:
-            self.check_person()
-            self.count += 1
         self.update_stats()

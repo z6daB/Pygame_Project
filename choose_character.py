@@ -6,14 +6,17 @@ from button import *
 from support import *
 from settings import *
 from drawer import *
+from player import Player
+
 
 
 class ChooseCharacter(GameScreen):
-    def __init__(self):
+    def __init__(self, game):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.button = Button()
         self.drawer = Drawer()
+        self.game = game
 
     def event_loop(self):
         for event in pygame.event.get():
@@ -28,15 +31,24 @@ class ChooseCharacter(GameScreen):
                 ChangeScreen('menu')
             if self.button.button_black_man().collidepoint(event.pos):
                 set_character('black_man')
-                set_stats('black_man')
+                dict_screens['game'].level.spawn_player(
+                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
+                           **black_man))
+                #set_stats('black_man')
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
                 set_character('woman')
-                set_stats('woman')
+                dict_screens['game'].level.spawn_player(
+                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
+                           **woman))
+                #set_stats('woman')
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
                 set_character('white_man')
-                set_stats('white_man')
+                dict_screens['game'].level.spawn_player(
+                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
+                           **white_man))
+                #set_stats('white_man')
                 ChangeScreen('load')
 
     def draw(self):
@@ -75,4 +87,4 @@ class ChooseCharacter(GameScreen):
             self.button.button_back_draw2()
 
 
-dict_screens['choose_char'] = ChooseCharacter()
+

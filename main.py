@@ -1,15 +1,15 @@
 import pygame
 from settings import *
-from game_screens import get_current_screen, ChangeScreen
+from game_screens import get_current_screen, ChangeScreen, add_screen
 from change_cursor import change_cursor
 pygame.init()
 pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window
-import choose_character
+from choose_character import ChooseCharacter
 import loading
 import settings_window
 import level
-import game
+from game import Game
 import loss_screen
 
 
@@ -17,8 +17,11 @@ class Main:
     def __init__(self):
         self.display = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
-        change_cursor()
+        self.game = Game()
+        add_screen('game', self.game)
+        add_screen('choose_char', ChooseCharacter(self.game))
         pygame.display.set_caption('Battle Among the Ruins')
+
         ChangeScreen('menu')
 
     def run(self):

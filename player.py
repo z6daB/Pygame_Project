@@ -5,16 +5,25 @@ from creature import Creature
 
 
 class Player(Creature):
-    def __init__(self, pos, groups, invisible_sprites):
-        super().__init__(groups)
-        self.folder = 'black_man'
+    def __init__(self, groups, invisible_sprites, game, hp_value, water_value, radiation_value, speed, name):
+        super().__init__(hp_value, groups, game)
+
+        self.water_value = water_value
+        self.radiation_value = radiation_value
+        self.speed = speed
+        self.name = name
+        self.folder = name
         self.image = pygame.image.load(f'graphics/characters/{self.folder}/right/1.png').convert_alpha()
-        self.rect = self.image.get_rect(topleft=pos)
+        self.rect = self.image.get_rect()
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
                                   self.rect.width, self.rect.height // 2)
 
         self.invisible_sprites = invisible_sprites
-        self.speed = 7
+
+    def spawn(self, pos):
+        self.rect.topleft = pos
+        self.hitbox = pygame.Rect(self.rect.x, self.rect.y + self.rect.height // 2,
+                                  self.rect.width, self.rect.height // 2)
 
     def keyboard_buttons(self):
         keys = pygame.key.get_pressed()
@@ -61,10 +70,3 @@ class Player(Creature):
         self.move(self.speed)
         self.animation()
 
-        name = get_character()
-        if name == 'woman':
-            self.folder = 'woman'
-        elif name == 'white_man':
-            self.folder = 'white_man'
-        elif name == 'black_man':
-            self.folder = 'black_man'

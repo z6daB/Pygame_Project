@@ -10,8 +10,8 @@ from interface import Interface
 class Game:
     def __init__(self):
         self.display = pygame.display.get_surface()
-        self.interface = Interface()
-        self.level = Level()
+        #self.interface = Interface()
+        self.level = Level(self)
 
     def run(self):
         change_cursor_to_aim()
@@ -28,4 +28,3 @@ class Game:
         self.level.run()
 
 
-dict_screens['game'] = Game()
