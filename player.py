@@ -92,5 +92,5 @@ class Player(Creature):
         self.keyboard_buttons()
         self.move(self.speed)
         self.animation()
-        # self.update_stats()
+        self.update_stats()
 

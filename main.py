@@ -21,7 +21,7 @@ class Main:
         add_screen('game', self.game)
         add_screen('choose_char', ChooseCharacter(self.game))
         pygame.display.set_caption('Battle Among the Ruins')
-
+        change_cursor()
         ChangeScreen('menu')
 
     def run(self):
