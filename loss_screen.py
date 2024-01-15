@@ -2,6 +2,7 @@ import pygame
 import sys
 from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
+from change_cursor import change_cursor
 from button import *
 
 
@@ -30,6 +31,7 @@ class DeadWindow(GameScreen):
         self.button.menu_button_draw()
         self.button.restart_button_draw()
         self.button.dead_inscription()
+        change_cursor()
 
 
 dict_screens['dead'] = DeadWindow()

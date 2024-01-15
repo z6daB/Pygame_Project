@@ -9,7 +9,6 @@ from drawer import *
 from player import Player
 
 
-
 class ChooseCharacter(GameScreen):
     def __init__(self, game):
         self.display = pygame.display.get_surface()
@@ -34,21 +33,18 @@ class ChooseCharacter(GameScreen):
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
                            **black_man))
-                #set_stats('black_man')
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
                 set_character('woman')
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
                            **woman))
-                #set_stats('woman')
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
                 set_character('white_man')
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
                            **white_man))
-                #set_stats('white_man')
                 ChangeScreen('load')
 
     def draw(self):

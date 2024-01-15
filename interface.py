@@ -72,7 +72,6 @@ class Interface:
 
     def draw_minimap(self):
         coords = self.game.level.player.get_coords()
-        print(coords)
         x = coords[0]
         y = coords[1]
         self.display.blit(self.minimap, (2, 2))
@@ -82,6 +81,7 @@ class Interface:
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
         if self.game.level.player.hp_value <= 0:
+            print('dead')
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:

@@ -37,7 +37,6 @@ class Level:
                             else:
                                 self.zombies.append(Zombie((x, y), self.visible_sprites, self.invisible_sprites, self.game))
 
-
     def spawn_player(self, player):
         self.player = player
         self.player.spawn(self.player_spawn)
@@ -46,7 +45,6 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         for zombie in self.zombies:
             zombie.zombie_update(self.player)
-        #self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
         self.interface.draw_bars()
         self.interface.draw_minimap()

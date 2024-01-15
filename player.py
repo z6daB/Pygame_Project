@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from support import get_character
 from creature import Creature
+from game_screens import dict_screens, ChangeScreen
 
 
 class Player(Creature):
@@ -12,6 +13,7 @@ class Player(Creature):
         self.radiation_value = radiation_value
         self.speed = speed
         self.name = name
+
         self.folder = name
         self.image = pygame.image.load(f'graphics/characters/{self.folder}/right/1.png').convert_alpha()
         self.rect = self.image.get_rect()
@@ -19,6 +21,9 @@ class Player(Creature):
                                   self.rect.width, self.rect.height // 2)
 
         self.invisible_sprites = invisible_sprites
+
+        self.start_ticks = pygame.time.get_ticks()
+        self.tick_interval = 5000
 
     def spawn(self, pos):
         self.rect.topleft = pos
@@ -65,8 +70,27 @@ class Player(Creature):
     def get_coords(self):
         return self.hitbox.x, self.hitbox.y
 
+    def update_stats(self):
+        current_ticks = pygame.time.get_ticks()
+        if self.hp_value <= 0:
+            print(self.hp_value)
+            ChangeScreen('dead')
+        else:
+            if current_ticks - self.start_ticks > self.tick_interval:
+                if self.water_value > 0:
+                    self.water_value -= 1
+                elif self.water_value <= 0:
+                    self.hp_value -= 1
+
+                if self.radiation_value < 100:
+                    self.radiation_value += 5
+                elif self.radiation_value == 100:
+                    self.hp_value -= 1
+                self.start_ticks = current_ticks
+
     def update(self):
         self.keyboard_buttons()
         self.move(self.speed)
         self.animation()
+        # self.update_stats()
 

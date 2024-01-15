@@ -10,7 +10,6 @@ from interface import Interface
 class Game:
     def __init__(self):
         self.display = pygame.display.get_surface()
-        #self.interface = Interface()
         self.level = Level(self)
 
     def run(self):
