@@ -7,6 +7,7 @@ pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window
 from choose_character import ChooseCharacter
 import loading
+import inventory
 import settings_window
 import level
 from game import Game
