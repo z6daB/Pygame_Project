@@ -10,6 +10,7 @@ from button import *
 class Interface:
     def __init__(self, game):
         self.game = game
+        self.button = Button()
 
         self.display = pygame.display.get_surface()
         self.memories_value = 4
