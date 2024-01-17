@@ -6,6 +6,7 @@ from button import *
 from settings import *
 from drawer import *
 from player import Player
+from support import set_character
 
 
 class ChooseCharacter(GameScreen):

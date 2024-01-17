@@ -1,7 +1,6 @@
 import pygame
 from creature import Creature
 from settings import *
-from support import get_stats
 
 
 class Zombie(Creature):
@@ -47,9 +46,6 @@ class Zombie(Creature):
 
         self.count = 1
 
-        self.stats = black_man
-        self.reset_stats = black_man_reset
-        self.dict_name = self.stats['name']
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)

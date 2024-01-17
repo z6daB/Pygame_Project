@@ -1,7 +1,6 @@
 import time
 import pygame
 from settings import *
-from support import get_character, set_stats, get_stats
 from game_screens import dict_screens, ChangeScreen
 from drawer import Drawer
 from button import *
