@@ -124,6 +124,11 @@ class Button:
         self.surf_menu = self.font.render('Menu', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.menu_button())
         self.display.blit(self.surf_menu, (self.menu_button().x + 15, self.menu_button().y + 10))
+        
+    def menu_button_draw_hover(self):
+        self.surf_menu = self.font.render('Menu', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.menu_button())
+        self.display.blit(self.surf_menu, (self.menu_button().x + 15, self.menu_button().y + 10))
 
     def restart_button(self):
         restart_button = pygame.Rect(WINDOW_WIDTH // 2 - 175, WINDOW_HEIGHT // 2 + 50, 230, 50)
@@ -133,8 +138,40 @@ class Button:
         self.surf_restart = self.font.render('Restart', True, 'Black')
         pygame.draw.rect(self.display, (102, 102, 51), self.restart_button())
         self.display.blit(self.surf_restart, (self.restart_button().x + 15, self.restart_button().y + 10))
+    
+    def restart_button_draw_hover(self):
+        self.surf_restart = self.font.render('Restart', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.restart_button())
+        self.display.blit(self.surf_restart, (self.restart_button().x + 15, self.restart_button().y + 10))
 
     def dead_inscription(self):
         self.surf_dead = self.font.render('You lost', True, 'Black')
         self.display.blit(self.surf_dead, (WINDOW_WIDTH // 2 - 180, 200))
+        
+    def inventory_button(self):
+        inventory_button = pygame.Rect(WINDOW_WIDTH - 110, 10, 80, 80)
+        return inventory_button
 
+    def inventory_button_draw(self):
+        pygame.draw.circle(self.display, (102, 102, 51), (WINDOW_WIDTH-60, 60), 40)
+        self.inventory = pygame.image.load('map/inventory.png')
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
+    
+    def inventory_button_draw_hover(self):
+        pygame.draw.circle(self.display, (131, 131, 89), (WINDOW_WIDTH-60, 60), 40)
+        self.inventory = pygame.image.load('map/inventory.png')
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
+        
+    def inventory_back_button(self):
+        inventory_button = pygame.Rect(WINDOW_WIDTH - 110, 10, 80, 80)
+        return inventory_button
+
+    def inventory_back_button_draw(self):
+        pygame.draw.circle(self.display, (102, 102, 51), (WINDOW_WIDTH-60, 60), 40)
+        self.inventory = pygame.image.load('map/inventory_back.png')
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
+    
+    def inventory_back_button_draw_hover(self):
+        pygame.draw.circle(self.display, (131, 131, 89), (WINDOW_WIDTH-60, 60), 40)
+        self.inventory = pygame.image.load('map/inventory_back.png')
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))

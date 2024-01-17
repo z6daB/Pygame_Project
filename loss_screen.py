@@ -28,8 +28,16 @@ class DeadWindow(GameScreen):
 
     def draw(self):
         self.display.blit(self.bg, (0, 0))
-        self.button.menu_button_draw()
-        self.button.restart_button_draw()
+        # menu
+        if self.button.menu_button().collidepoint(pygame.mouse.get_pos()):
+            self.button.menu_button_draw_hover()
+        else:
+            self.button.menu_button_draw()
+        # restart
+        if self.button.restart_button().collidepoint(pygame.mouse.get_pos()):
+            self.button.restart_button_draw_hover()
+        else:
+            self.button.restart_button_draw()
         self.button.dead_inscription()
         change_cursor()
 

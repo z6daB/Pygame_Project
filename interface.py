@@ -4,11 +4,13 @@ from settings import *
 from support import get_character, set_stats, get_stats
 from game_screens import dict_screens, ChangeScreen
 from drawer import Drawer
+from button import *
 
 
 class Interface:
     def __init__(self, game):
         self.game = game
+        self.button = Button()
 
         self.display = pygame.display.get_surface()
         self.memories_value = 4
@@ -63,6 +65,11 @@ class Interface:
         self.inventory = pygame.image.load('map/inventory.png')
         self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
 
+        if self.button.inventory_button().collidepoint(pygame.mouse.get_pos()):
+            self.button.inventory_button_draw_hover()
+        else:
+            self.button.inventory_button_draw()
+
         # weapon
         pygame.draw.rect(self.display, (131, 131, 89), (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 120, 256, 128))
         self.weapon = pygame.image.load('graphics/weapons/stick.png')
@@ -98,6 +105,3 @@ class Interface:
                     self.game.level.player.get_damage(1)
 
                 self.start_ticks = current_ticks
-
-    def update(self):
-        self.update_stats()
