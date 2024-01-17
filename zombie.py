@@ -42,10 +42,9 @@ class Zombie(Creature):
         self.speed = 6
 
         self.start_ticks = pygame.time.get_ticks()
-        self.tick_interval = 5000
+        self.tick_interval = 400
 
         self.count = 1
-
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)
@@ -101,9 +100,7 @@ class Zombie(Creature):
             self.image = self.image_idle
 
     def attack(self):
-        self.game.level.player.get_damage(50)
-
-        #print(self.stats)
+        self.game.level.player.get_damage(5)
         print('damage')
 
     def delay(self):
@@ -138,7 +135,6 @@ class Zombie(Creature):
             self.reset_stats = woman_reset.copy()
 
     def update(self):
-        #self.update_stats()
         self.move(self.speed)
         self.animation()
         self.delay()
