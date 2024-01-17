@@ -3,7 +3,6 @@ import pygame
 from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
 from button import *
-from support import *
 from settings import *
 from drawer import *
 from player import Player

@@ -73,7 +73,7 @@ class Player(Creature):
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
         if self.hp_value <= 0:
-            print(self.hp_value)
+            self.kill()
             ChangeScreen('dead')
         else:
             if current_ticks - self.start_ticks > self.tick_interval:
