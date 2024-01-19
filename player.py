@@ -24,6 +24,11 @@ class Player(Creature):
 
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
+        self.weapon_data = {
+            'stick': {'cooldown': 500, 'damage': 15, 'radius': 20}
+        }
+        self.weapon = 'stick'
+        self.attack_status = False
 
     def spawn(self, pos):
         self.rect.topleft = pos
@@ -45,6 +50,12 @@ class Player(Creature):
             self.direction.x = 1
         else:
             self.direction.x = 0
+
+        if keys[pygame.K_SPACE]:
+            self.attack_status = True
+            self.direction.x = 0
+            self.direction.y = 0
+            self.attack_ticks = pygame.time.get_ticks()
 
     def animation(self):
         images = [
@@ -70,6 +81,21 @@ class Player(Creature):
     def get_coords(self):
         return self.hitbox.x, self.hitbox.y
 
+    def get_weapon_damage(self):
+        total_damage = self.weapon_data[self.weapon]['damage']
+        return total_damage
+
+    def attack(self):
+        self.set_damage_status()
+
+    def delay(self):
+        if self.attack_status:
+            if self.attack_ticks - self.start_ticks > self.weapon_data[self.weapon]['cooldown']:
+                self.attack_status = False
+                print('attack')
+                self.attack()
+                self.start_ticks = self.attack_ticks
+
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
         if self.hp_value <= 0:
@@ -90,6 +116,7 @@ class Player(Creature):
 
     def update(self):
         self.keyboard_buttons()
+        self.delay()
         self.move(self.speed)
         self.animation()
         self.update_stats()

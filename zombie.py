@@ -36,15 +36,17 @@ class Zombie(Creature):
                                   self.rect.width, self.rect.height // 2)
         self.invisible_sprites = invisible_sprites
 
-        self.visibility_radius = 250
-        self.damage_radius = 10
+        self.zombie_stats = {
+            'hp_value': 100, 'damage_radius': 10, 'speed': 6, 'visibility_radius': 250
+        }
 
-        self.speed = 6
+        self.visibility_radius = self.zombie_stats['visibility_radius']
+        self.damage_radius = self.zombie_stats['damage_radius']
+        self.speed = self.zombie_stats['speed']
+        self.hp = self.zombie_stats['hp_value']
 
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 400
-
-        self.count = 1
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)
@@ -75,7 +77,6 @@ class Zombie(Creature):
             self.direction = pygame.math.Vector2()
 
     def animation(self):
-
         if self.status == 'move':
             if self.direction.x > 0 and self.direction.y != 0 or self.direction.x == 0 \
                     and self.direction.y != 0 or self.direction.x > 0:
@@ -101,7 +102,14 @@ class Zombie(Creature):
 
     def attack(self):
         self.game.level.player.get_damage(5)
-        print('damage')
+
+    def get_damage_from_player(self, player):
+        if player.possibility_of_taking_damage:
+            length = self.get_player_lenght_direction(player)[0]
+            if length <= self.damage_radius:
+                self.hp -= player.get_weapon_damage()
+                print(self.hp)
+                player.possibility_of_taking_damage = False
 
     def delay(self):
         attack_ticks = pygame.time.get_ticks()
@@ -111,34 +119,16 @@ class Zombie(Creature):
                 self.start_ticks = attack_ticks
 
     def update_stats(self):
-        self.stats = get_stats()
-        if self.stats == 'black_man':
-            self.stats = black_man
-            if self.stats['hp_value'] > 0:
-                self.stats = black_man
-            else:
-                self.stats = black_man_reset.copy()
-            self.reset_stats = black_man_reset.copy()
-        elif self.stats == 'white_man':
-            self.stats = white_man
-            if self.stats['hp_value'] > 0:
-                self.stats = white_man
-            else:
-                self.stats = white_man_reset.copy()
-            self.reset_stats = white_man_reset.copy()
-        else:
-            self.stats = woman
-            if self.stats['hp_value'] > 0:
-                self.stats = woman
-            else:
-                self.stats = woman_reset.copy()
-            self.reset_stats = woman_reset.copy()
+        if self.hp <= 0:
+            self.kill()
 
     def update(self):
         self.move(self.speed)
         self.animation()
+        self.update_stats()
         self.delay()
 
     def zombie_update(self, player):
         self.get_status(player)
         self.actions(player)
+        self.get_damage_from_player(player)
