@@ -43,7 +43,7 @@ class Zombie(Creature):
         self.visibility_radius = self.zombie_stats['visibility_radius']
         self.damage_radius = self.zombie_stats['damage_radius']
         self.speed = self.zombie_stats['speed']
-        self.hp = self.zombie_stats['hp_value']
+        self.hp_value = self.zombie_stats['hp_value']
 
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 400
@@ -103,14 +103,6 @@ class Zombie(Creature):
     def attack(self):
         self.game.level.player.get_damage(5)
 
-    def get_damage_from_player(self, player):
-        if player.possibility_of_taking_damage:
-            length = self.get_player_lenght_direction(player)[0]
-            if length <= self.damage_radius:
-                self.hp -= player.get_weapon_damage()
-                print(self.hp)
-                player.possibility_of_taking_damage = False
-
     def delay(self):
         attack_ticks = pygame.time.get_ticks()
         if attack_ticks - self.start_ticks > self.tick_interval:
@@ -119,7 +111,7 @@ class Zombie(Creature):
                 self.start_ticks = attack_ticks
 
     def update_stats(self):
-        if self.hp <= 0:
+        if self.hp_value <= 0:
             self.kill()
 
     def update(self):
@@ -131,4 +123,3 @@ class Zombie(Creature):
     def zombie_update(self, player):
         self.get_status(player)
         self.actions(player)
-        self.get_damage_from_player(player)

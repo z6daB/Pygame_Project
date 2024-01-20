@@ -48,6 +48,7 @@ class Level:
         self.visible_sprites.update()
         self.interface.draw_bars()
         self.interface.draw_minimap()
+        self.interface.draw_weapon()
 
 
 class CameraGroup(pygame.sprite.Group):

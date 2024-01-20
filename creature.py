@@ -9,13 +9,9 @@ class Creature(pygame.sprite.Sprite):
         self.game = game
         self.hp_value = hp_value
         self.frame = 0
-        self.possibility_of_taking_damage = False
 
     def get_damage(self, damage):
         self.hp_value -= damage
-
-    def set_damage_status(self):
-        self.possibility_of_taking_damage = not(self.possibility_of_taking_damage)
 
     def move(self, speed):
         if self.direction.magnitude() != 0:

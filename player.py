@@ -3,12 +3,22 @@ from settings import *
 from support import get_character
 from creature import Creature
 from game_screens import dict_screens, ChangeScreen
+from weapon import Weapon
 
 
 class Player(Creature):
     def __init__(self, groups, invisible_sprites, game, hp_value, water_value, radiation_value, speed, name):
         super().__init__(hp_value, groups, game)
+        self.zombies = dict_screens['game'].level.zombies
 
+        # weapon
+        self.weapon = Weapon()
+        self.weapon_data = self.weapon.weapon_data
+        self.weapon_items = self.weapon.weapon_items
+        self.weapon_index = 2
+        self.weapon_item = self.weapon_items[self.weapon_index]
+
+        # stats
         self.water_value = water_value
         self.radiation_value = radiation_value
         self.speed = speed
@@ -24,10 +34,6 @@ class Player(Creature):
 
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
-        self.weapon_data = {
-            'stick': {'cooldown': 500, 'damage': 15, 'radius': 20}
-        }
-        self.weapon = 'stick'
         self.attack_status = False
 
     def spawn(self, pos):
@@ -57,6 +63,13 @@ class Player(Creature):
             self.direction.y = 0
             self.attack_ticks = pygame.time.get_ticks()
 
+        if keys[pygame.K_1]:
+            self.weapon_index = 0
+        elif keys[pygame.K_2]:
+            self.weapon_index = 1
+        elif keys[pygame.K_3]:
+            self.weapon_index = 2
+
     def animation(self):
         images = [
             '1.png', '2.png', '3.png', '4.png'
@@ -81,18 +94,19 @@ class Player(Creature):
     def get_coords(self):
         return self.hitbox.x, self.hitbox.y
 
-    def get_weapon_damage(self):
-        total_damage = self.weapon_data[self.weapon]['damage']
-        return total_damage
-
     def attack(self):
-        self.set_damage_status()
+        lenght = self.get_lenght()
+        for zombie in self.zombies:
+            zombie_vec = pygame.math.Vector2(zombie.rect.center)
+            player_vec = pygame.math.Vector2(self.rect.center)
+            if (player_vec - zombie_vec).magnitude() == lenght:
+                if lenght <= self.weapon_data[self.weapon_item]['radius']:
+                    zombie.get_damage(self.weapon_data[self.weapon_item]['damage'])
 
     def delay(self):
         if self.attack_status:
-            if self.attack_ticks - self.start_ticks > self.weapon_data[self.weapon]['cooldown']:
+            if self.attack_ticks - self.start_ticks > self.weapon_data[self.weapon_item]['cooldown']:
                 self.attack_status = False
-                print('attack')
                 self.attack()
                 self.start_ticks = self.attack_ticks
 
@@ -114,10 +128,22 @@ class Player(Creature):
                     self.hp_value -= 1
                 self.start_ticks = current_ticks
 
+    def get_lenght(self):
+        distances = []
+        for zombie in self.zombies:
+            zombie_vec = pygame.math.Vector2(zombie.rect.center)
+            player_vec = pygame.math.Vector2(self.rect.center)
+            distances.append((player_vec - zombie_vec).magnitude())
+        lenght = min(distances)
+        return lenght
+
+    def update_weapon_item(self):
+        self.weapon_item = self.weapon_items[self.weapon_index]
+
     def update(self):
         self.keyboard_buttons()
         self.delay()
         self.move(self.speed)
         self.animation()
         self.update_stats()
-
+        self.update_weapon_item()
