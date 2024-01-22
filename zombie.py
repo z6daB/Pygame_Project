@@ -37,7 +37,7 @@ class Zombie(Creature):
         self.invisible_sprites = invisible_sprites
 
         self.zombie_stats = {
-            'hp_value': 100, 'damage_radius': 10, 'speed': 6, 'visibility_radius': 250
+            'hp_value': 100, 'damage_radius': 10, 'speed': 6, 'visibility_radius': 250, 'cooldown': 400
         }
 
         self.visibility_radius = self.zombie_stats['visibility_radius']
@@ -46,7 +46,7 @@ class Zombie(Creature):
         self.hp_value = self.zombie_stats['hp_value']
 
         self.start_ticks = pygame.time.get_ticks()
-        self.tick_interval = 400
+        self.tick_interval = self.zombie_stats['cooldown']
 
     def get_player_lenght_direction(self, player):
         zombie_vec = pygame.math.Vector2(self.rect.center)
