@@ -95,13 +95,9 @@ class Player(Creature):
         return self.hitbox.x, self.hitbox.y
 
     def attack(self):
-        lenght = self.get_lenght()
-        for zombie in self.zombies:
-            zombie_vec = pygame.math.Vector2(zombie.rect.center)
-            player_vec = pygame.math.Vector2(self.rect.center)
-            if (player_vec - zombie_vec).magnitude() == lenght:
-                if lenght <= self.weapon_data[self.weapon_item]['radius']:
-                    zombie.get_damage(self.weapon_data[self.weapon_item]['damage'])
+        zombie = dict_screens['game'].level.get_nearest_zombie(self, self.weapon_data[self.weapon_item]['radius'])
+        if zombie:
+            zombie.get_damage(self.weapon_data[self.weapon_item]['damage'])
 
     def delay(self):
         if self.attack_status:
@@ -127,15 +123,6 @@ class Player(Creature):
                 elif self.radiation_value == 100:
                     self.hp_value -= 1
                 self.start_ticks = current_ticks
-
-    def get_lenght(self):
-        distances = []
-        for zombie in self.zombies:
-            zombie_vec = pygame.math.Vector2(zombie.rect.center)
-            player_vec = pygame.math.Vector2(self.rect.center)
-            distances.append((player_vec - zombie_vec).magnitude())
-        lenght = min(distances)
-        return lenght
 
     def update_weapon_item(self):
         self.weapon_item = self.weapon_items[self.weapon_index]
