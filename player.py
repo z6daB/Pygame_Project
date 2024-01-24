@@ -95,7 +95,8 @@ class Player(Creature):
         return self.hitbox.x, self.hitbox.y
 
     def attack(self):
-        zombie = dict_screens['game'].level.get_nearest_zombie(self, self.weapon_data[self.weapon_item]['radius'])
+        zombie = dict_screens['game'].level.get_nearest_zombie(self, self.weapon_data[self.weapon_item]['radius'])[1]
+        print(zombie)
         if zombie:
             zombie.get_damage(self.weapon_data[self.weapon_item]['damage'])
 
