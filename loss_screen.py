@@ -29,6 +29,8 @@ class DeadWindow(GameScreen):
             if self.button.menu_button().collidepoint(event.pos):
                 ChangeScreen('menu')
             elif self.button.restart_button().collidepoint(event.pos):
+                self.game = Game()
+                dict_screens['game'] = self.game
                 name = get_character()
                 if name == 'black_man':
                     dict_screens['game'].level.spawn_player(
