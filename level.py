@@ -65,8 +65,8 @@ class Level:
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)
-        self.visible_sprites.zombie_update(self.player)
-        self.visible_sprites.draw(self.display)
+        for zombie in self.zombies:
+            zombie.zombie_update(self.player)
         self.visible_sprites.update()
         self.interface.draw_bars()
         self.interface.draw_minimap()
