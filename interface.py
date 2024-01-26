@@ -13,7 +13,6 @@ class Interface:
         self.game = game
         self.button = Button()
         self.weapon = Weapon()
-
         self.display = pygame.display.get_surface()
         self.memories_value = 4
 

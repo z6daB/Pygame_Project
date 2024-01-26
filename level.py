@@ -15,6 +15,7 @@ class Level:
         self.invisible_sprites = pygame.sprite.Group()
         self.game = game
         self.zombies = []
+        self.searched_items = []
         self.create_map()
         self.interface = Interface(game)
 
@@ -30,6 +31,8 @@ class Level:
                         x = col_index * TILESIZE
                         y = row_index * TILESIZE
                         if style == 'border':
+                            if col == '291' or col == '292':
+                                self.searched_items.append(Tile((x, y), self.invisible_sprites, 'invisible'))
                             Tile((x, y), self.invisible_sprites, 'invisible')
                         if style == 'creature':
                             if col == '0':
@@ -40,6 +43,22 @@ class Level:
     def spawn_player(self, player):
         self.player = player
         self.player.spawn(self.player_spawn)
+
+    def get_items(self, obj, distance=0):
+        distances = []
+        for item in self.searched_items:
+            lenght = self.get_lenght_between_objects(obj, item)
+            if distance == 0 or lenght <= distance:
+                distances.append((lenght, item))
+        distances.sort()
+        return distances
+
+    def get_nearest_item(self, obj, distance=0):
+        result = self.get_items(obj, distance)
+        if result:
+            return result[0]
+        else:
+            return None
 
     def get_zombies(self, obj, distance=0):
         distances = []

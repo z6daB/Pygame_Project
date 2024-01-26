@@ -2,6 +2,8 @@ import pygame
 from settings import *
 from weapon import Weapon
 from item import Item
+from game_screens import dict_screens, ChangeScreen
+
 
 class Drawer:
     def __init__(self):
@@ -9,8 +11,6 @@ class Drawer:
         self.font = pygame.font.Font('graphics/menu/font.ttf', 12)
         self.weapon = Weapon()
         self.item = Item()
-        self.weapon_have = [['gun', 0, 0], ['handgun', 0, 0], ['stick', 0, 0]]
-        self.item_have = [['wood', 0], ['iron', 0], ['kumquat', 0], ['gasmask', 0], ['medicinal_substances', 0]]
 
     def drawer_text(self, size_font, text, color, pos):
         self.font = pygame.font.Font('graphics/menu/font.ttf', size_font)
@@ -55,6 +55,8 @@ class Drawer:
         self.drawer_text(12, 'Пистолет', 'White', (1060, 480))
     
     def inventory_draw(self):
+        self.weapon_have = dict_screens['game'].level.player.weapon_have
+        self.item_have = dict_screens['game'].level.player.item_have
         self.drawer_text(28, 'Доступные Оружия', 'Black', (120, 120))
         for i in range(len(self.weapon_have) - 1, -1, -1):
             image = self.weapon.images[self.weapon.weapon_items.index(self.weapon_have[i][0])]

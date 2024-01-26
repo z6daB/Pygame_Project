@@ -21,7 +21,6 @@ class Crafter(GameScreen):
         self.active_now = 1
 
     def event_loop(self):
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()

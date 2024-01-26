@@ -37,6 +37,7 @@ class Player(Creature):
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
         self.attack_status = False
+        self.search_status = False
 
     def spawn(self, pos):
         self.rect.topleft = pos
@@ -71,6 +72,10 @@ class Player(Creature):
             self.weapon_index = 1
         elif keys[pygame.K_3]:
             self.weapon_index = 2
+
+        if keys[pygame.K_f]:
+            self.search_status = True
+            self.search()
 
     def animation(self):
         images = [
@@ -130,6 +135,13 @@ class Player(Creature):
     def update_weapon_item(self):
         self.weapon_item = self.weapon_items[self.weapon_index]
 
+    def search(self):
+        search_item = dict_screens['game'].level.get_nearest_item(self, 100)
+        if self.search_status:
+            self.search_status = False
+            if search_item:
+                print('search')
+
     def update(self):
         self.keyboard_buttons()
         self.delay()
@@ -137,3 +149,4 @@ class Player(Creature):
         self.animation()
         self.update_stats()
         self.update_weapon_item()
+        self.search()
