@@ -53,12 +53,6 @@ class Level:
         distances.sort()
         return distances
 
-    def get_nearest_item(self, obj, distance=0):
-        result = self.get_items(obj, distance)
-        if result:
-            return result[0]
-        else:
-            return None
 
     def get_zombies(self, obj, distance=0):
         distances = []
@@ -69,8 +63,11 @@ class Level:
         distances.sort()
         return distances
 
-    def get_nearest_zombie(self, obj, distance=0):
-        result = self.get_zombies(obj, distance)
+    def get_nearest_object(self, obj, type, distance=0):
+        if type == 'zombie':
+            result = self.get_zombies(obj, distance)
+        elif type == 'item':
+            result = self.get_items(obj, distance)
         if result:
             return result[0]
         else:

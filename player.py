@@ -103,7 +103,7 @@ class Player(Creature):
 
     def attack(self):
         weapon_radius = self.weapon_data[self.weapon_item]['radius']
-        zombie = dict_screens['game'].level.get_nearest_zombie(self, weapon_radius)
+        zombie = dict_screens['game'].level.get_nearest_object(self, 'zombie', weapon_radius)
         if zombie:
             zombie[1].get_damage(self.weapon_data[self.weapon_item]['damage'])
 
@@ -136,7 +136,7 @@ class Player(Creature):
         self.weapon_item = self.weapon_items[self.weapon_index]
 
     def search(self):
-        search_item = dict_screens['game'].level.get_nearest_item(self, 100)
+        search_item = dict_screens['game'].level.get_nearest_object(self, 'item', 100)
         if self.search_status:
             self.search_status = False
             if search_item:
