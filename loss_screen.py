@@ -4,6 +4,9 @@ from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
 from change_cursor import change_cursor
 from button import *
+from support import get_character
+from player import Player
+from game import Game
 
 
 class DeadWindow(GameScreen):
@@ -11,8 +14,10 @@ class DeadWindow(GameScreen):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.button = Button()
+        self.game = Game()
 
     def event_loop(self):
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -24,6 +29,22 @@ class DeadWindow(GameScreen):
             if self.button.menu_button().collidepoint(event.pos):
                 ChangeScreen('menu')
             elif self.button.restart_button().collidepoint(event.pos):
+                name = get_character()
+                if name == 'black_man':
+                    dict_screens['game'].level.spawn_player(
+                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
+                               self.game,
+                               **black_man))
+                elif name == 'white_man':
+                    dict_screens['game'].level.spawn_player(
+                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
+                               self.game,
+                               **white_man))
+                else:
+                    dict_screens['game'].level.spawn_player(
+                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
+                               self.game,
+                               **woman))
                 ChangeScreen('load')
 
     def draw(self):

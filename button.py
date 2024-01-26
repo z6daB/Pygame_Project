@@ -167,11 +167,113 @@ class Button:
         return inventory_button
 
     def inventory_back_button_draw(self):
-        pygame.draw.circle(self.display, (102, 102, 51), (WINDOW_WIDTH-60, 60), 40)
-        self.inventory = pygame.image.load('map/inventory_back.png')
-        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
-    
-    def inventory_back_button_draw_hover(self):
         pygame.draw.circle(self.display, (131, 131, 89), (WINDOW_WIDTH-60, 60), 40)
         self.inventory = pygame.image.load('map/inventory_back.png')
-        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 25))
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 30))
+    
+    def inventory_back_button_draw_hover(self):
+        pygame.draw.circle(self.display, (155, 155, 115), (WINDOW_WIDTH-60, 60), 40)
+        self.inventory = pygame.image.load('map/inventory_back.png')
+        self.display.blit(self.inventory, (WINDOW_WIDTH-92, 30))
+        
+    def button_slot_inventory(self):
+        button_back = pygame.Rect(200, 20, 300, 60)
+        return button_back
+
+    def button_slot_inventory_draw(self):
+        self.surf_back = self.font.render('Inventory', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_slot_inventory())
+        self.display.blit(self.surf_back, (self.button_slot_inventory().x + 15, self.button_slot_inventory().y + 15))
+
+    def button_slot_inventory_draw_hover(self):
+        self.surf_back = self.font.render('Inventory', True, 'Black')
+        pygame.draw.rect(self.display, (155, 155, 115), self.button_slot_inventory())
+        self.display.blit(self.surf_back, (self.button_slot_inventory().x + 15, self.button_slot_inventory().y + 15))        
+
+    def button_slot_crafter(self):
+        button_back = pygame.Rect(700, 20, 240, 60)
+        return button_back
+
+    def button_slot_crafter_draw(self):
+        self.surf_back = self.font.render('Crafter', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_slot_crafter())
+        self.display.blit(self.surf_back, (self.button_slot_crafter().x + 15, self.button_slot_crafter().y + 15))
+
+    def button_slot_crafter_draw_hover(self):
+        self.surf_back = self.font.render('Crafter', True, 'Black')
+        pygame.draw.rect(self.display, (155, 155, 115), self.button_slot_crafter())
+        self.display.blit(self.surf_back, (self.button_slot_crafter().x + 15, self.button_slot_crafter().y + 15))
+    # slot1
+    def button_craft_slot1(self):
+        button_back = pygame.Rect(150 - 7, 180 - 7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot1_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot1(), 7, 3)
+        
+    def button_craft_slot1_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot1(), 7, 3)
+    # slot2
+    def button_craft_slot2(self):
+        button_back = pygame.Rect(150 + 200 -7, 180-7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot2_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot2(), 7, 3)
+        
+    def button_craft_slot2_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot2(), 7, 3)
+    # slot3
+    def button_craft_slot3(self):
+        button_back = pygame.Rect(150 + 200 * 2-7, 180 -7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot3_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot3(), 7, 3)
+        
+    def button_craft_slot3_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot3(), 7, 3)
+    # slot4
+    def button_craft_slot4(self):
+        button_back = pygame.Rect(150 -7, 180 + 230 -7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot4_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot4(), 7, 3)
+        
+    def button_craft_slot4_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot4(), 7, 3)
+    # slot5
+    def button_craft_slot5(self):
+        button_back = pygame.Rect(150 + 200 -7, 180 + 230 -7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot5_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot5(), 7, 3)
+        
+    def button_craft_slot5_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot5(), 7, 3)
+    # slot6
+    def button_craft_slot6(self):
+        button_back = pygame.Rect(150 + 200 * 2-7, 180 + 230 -7, 150+14, 150+14)
+        return button_back
+
+    def button_craft_slot6_draw(self):
+        pygame.draw.rect(self.display, (0, 0, 0), self.button_craft_slot6(), 7, 3)
+        
+    def button_craft_slot6_draw_hover(self):
+        pygame.draw.rect(self.display, (255, 0, 0), self.button_craft_slot6(), 7, 3)
+    
+    def button_craft(self):
+        button_play = pygame.Rect(WINDOW_WIDTH - 450, WINDOW_HEIGHT - 125, 225, 70)
+        return button_play
+
+    def button_craft_draw(self):
+        self.surf_play = self.font.render('Crafter', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_craft())
+        self.display.blit(self.surf_play, (self.button_craft().x + 10, self.button_craft().y + 20))
+
+    def button_craft_draw_hover(self):
+        self.surf_play = self.font.render('Crafter', True, 'Black')
+        pygame.draw.rect(self.display, (131, 131, 89), self.button_craft())
+        self.display.blit(self.surf_play, (self.button_craft().x + 10, self.button_craft().y + 20))

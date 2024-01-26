@@ -41,13 +41,37 @@ class Level:
         self.player = player
         self.player.spawn(self.player_spawn)
 
+    def get_zombies(self, obj, distance=0):
+        distances = []
+        for zombie in self.zombies:
+            lenght = self.get_lenght_between_objects(obj, zombie)
+            if distance == 0 or lenght <= distance:
+                distances.append((lenght, zombie))
+        distances.sort()
+        return distances
+
+    def get_nearest_zombie(self, obj, distance=0):
+        result = self.get_zombies(obj, distance)
+        if result:
+            return result[0]
+        else:
+            return None
+
+    def get_lenght_between_objects(self, obj1, obj2):
+        obj1_vec = pygame.math.Vector2(obj1.rect.center)
+        obj2_vec = pygame.math.Vector2(obj2.rect.center)
+        lenght = (obj1_vec - obj2_vec).magnitude()
+        return lenght
+
     def run(self):
         self.visible_sprites.custom_draw(self.player)
-        for zombie in self.zombies:
-            zombie.zombie_update(self.player)
+        self.visible_sprites.zombie_update(self.player)
+        self.visible_sprites.draw(self.display)
         self.visible_sprites.update()
         self.interface.draw_bars()
         self.interface.draw_minimap()
+        self.interface.event_loop()
+        self.interface.draw_weapon()
 
 
 class CameraGroup(pygame.sprite.Group):

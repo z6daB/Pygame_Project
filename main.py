@@ -8,6 +8,7 @@ import select_window
 from choose_character import ChooseCharacter
 import loading
 import inventory
+import crafter
 import settings_window
 import level
 from game import Game
