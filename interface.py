@@ -1,4 +1,5 @@
 import time
+import sys
 import pygame
 from settings import *
 from game_screens import dict_screens, ChangeScreen
