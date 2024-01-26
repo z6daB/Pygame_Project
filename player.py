@@ -17,6 +17,8 @@ class Player(Creature):
         self.weapon_items = self.weapon.weapon_items
         self.weapon_index = 2
         self.weapon_item = self.weapon_items[self.weapon_index]
+        self.weapon_have = [['gun', 0, 0], ['handgun', 0, 0], ['stick', 0, 0]]
+        self.item_have = [['wood', 0], ['iron', 0], ['kumquat', 0], ['gasmask', 0], ['medicinal_substances', 0]]
 
         # stats
         self.water_value = water_value

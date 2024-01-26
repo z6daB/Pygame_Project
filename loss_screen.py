@@ -14,7 +14,6 @@ class DeadWindow(GameScreen):
         self.display = pygame.display.get_surface()
         self.bg = pygame.image.load('graphics/menu/bg.jpg')
         self.button = Button()
-        self.game = Game()
 
     def event_loop(self):
         for event in pygame.event.get():

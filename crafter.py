@@ -9,6 +9,8 @@ from drawer import *
 from button import Button
 from drawer import *
 from item import Item
+from game import Game
+
 
 class Crafter(GameScreen):
     def __init__(self):
@@ -16,16 +18,16 @@ class Crafter(GameScreen):
         self.button = Button()
         self.drawer = Drawer()
         self.item = Item()
-        self.weapon_have = [['gun', 0, 0], ['handgun', 0, 0], ['stick', 0, 0]]
-        self.item_have = [['wood', 0], ['iron', 0], ['kumquat', 0], ['gasmask', 0], ['medicinal_substances', 0]]
         self.active_now = 1
 
     def event_loop(self):
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             self.check(event)
+            self.update()
 
     def check(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -112,5 +114,10 @@ class Crafter(GameScreen):
             self.button.button_craft_draw_hover()
         else:
             self.button.button_craft_draw()
+
+    def update(self):
+        self.weapon_have = dict_screens['game'].level.player.weapon_have
+        self.item_have = dict_screens['game'].level.player.item_have
+
 
 dict_screens['crafter'] = Crafter()
