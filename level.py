@@ -75,6 +75,7 @@ class Level:
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
+
         super().__init__()
         self.display = pygame.display.get_surface()
         self.half_width = self.display.get_size()[0] // 2
