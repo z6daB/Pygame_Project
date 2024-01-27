@@ -6,6 +6,7 @@ from game_screens import dict_screens, ChangeScreen
 from weapon import Weapon
 from random import choices
 
+
 class Player(Creature):
     def __init__(self, groups, invisible_sprites, game, hp_value, water_value, radiation_value, speed, name):
         super().__init__(hp_value, groups, game)

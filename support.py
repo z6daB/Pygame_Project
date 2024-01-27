@@ -1,4 +1,5 @@
 import pygame
+
 character = None
 
 
@@ -9,5 +10,3 @@ def set_character(name):
 
 def get_character():
     return character
-
-

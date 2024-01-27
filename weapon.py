@@ -16,4 +16,3 @@ class Weapon:
             pygame.image.load('graphics/weapons/glock.png'),
             pygame.image.load('graphics/weapons/stick.png')
         ]
-

@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from game_screens import get_current_screen, ChangeScreen, add_screen
 from change_cursor import change_cursor
+
 pygame.init()
 pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 import select_window

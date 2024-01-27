@@ -12,10 +12,10 @@ class Item:
             pygame.image.load('graphics/items/gasmask.png'),
             pygame.image.load('graphics/items/medicinal_substances.png')
         ]
-        
+
         self.items_crafter = ['pill_health', 'gasmaskAll', 'pill_water', 'glock', 'ak47', 'bullet']
         self.items_crafter_names = ['Здоровье', 'Противогаз', 'Для воды', 'Пистолет', 'Автомат', 'Пули']
-        
+
         self.images_crafter = [
             pygame.image.load('graphics/items_crafter/pill_health.png'),
             pygame.image.load('graphics/items_crafter/gasmaskAll.png'),
