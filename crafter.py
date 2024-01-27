@@ -47,17 +47,17 @@ class Crafter(GameScreen):
             elif self.button.button_craft_slot6().collidepoint(event.pos):
                 self.active_now = 6
             elif self.button.button_craft().collidepoint(event.pos):
-                if self.active_now  == 1:
+                if self.active_now == 1:
                     pass
-                elif self.active_now  == 2:
+                elif self.active_now == 2:
                     pass
-                elif self.active_now  == 3:
+                elif self.active_now == 3:
                     pass
-                elif self.active_now  == 4:
+                elif self.active_now == 4:
                     pass
-                elif self.active_now  == 5:
+                elif self.active_now == 5:
                     pass
-                elif self.active_now  == 6:
+                elif self.active_now == 6:
                     pass
 
     def draw(self):
@@ -106,7 +106,7 @@ class Crafter(GameScreen):
             self.button.button_craft_slot6_draw_hover()
         else:
             self.button.button_craft_slot6_draw()
-        
+
         self.drawer.crafter_slot_draw(self.active_now - 1)
         # crafter
         if self.button.button_craft().collidepoint(pygame.mouse.get_pos()):

@@ -38,7 +38,8 @@ class Level:
                             if col == '0':
                                 self.player_spawn = (x, y)
                             else:
-                                self.zombies.append(Zombie((x, y), self.visible_sprites, self.invisible_sprites, self.game))
+                                self.zombies.append(
+                                    Zombie((x, y), self.visible_sprites, self.invisible_sprites, self.game))
 
     def spawn_player(self, player):
         self.player = player
@@ -52,7 +53,6 @@ class Level:
                 distances.append((lenght, item))
         distances.sort()
         return distances
-
 
     def get_zombies(self, obj, distance=0):
         distances = []
@@ -97,7 +97,7 @@ class CameraGroup(pygame.sprite.Group):
         self.half_width = self.display.get_size()[0] // 2
         self.half_height = self.display.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
-        
+
         # загрузка карты
         self.floor = pygame.image.load('map/map.png').convert()
         self.floor_rect = self.floor.get_rect(topleft=(0, 0))
@@ -110,4 +110,3 @@ class CameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display.blit(sprite.image, offset_pos)
-
