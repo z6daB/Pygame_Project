@@ -4,7 +4,7 @@ from support import get_character
 from creature import Creature
 from game_screens import dict_screens, ChangeScreen
 from weapon import Weapon
-
+from random import choices
 
 class Player(Creature):
     def __init__(self, groups, invisible_sprites, game, hp_value, water_value, radiation_value, speed, name):
@@ -147,7 +147,13 @@ class Player(Creature):
             self.search_status = False
             if search_item:
                 search_item[1].interact()
-                print('search')
+                self.adding_items()
+
+    def adding_items(self):
+        items = choices(self.item_have, k=3)
+        for item in items:
+            item[1] += 1
+            print(item)
 
     def update(self):
         self.keyboard_buttons()
