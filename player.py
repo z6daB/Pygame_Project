@@ -146,6 +146,7 @@ class Player(Creature):
         if self.search_status:
             self.search_status = False
             if search_item:
+                search_item[1].interact()
                 print('search')
 
     def update(self):

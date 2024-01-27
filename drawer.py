@@ -73,7 +73,6 @@ class Drawer:
     def crafter_draw(self):
         for i in range(2):
             for j in range(3):
-                #pygame.draw.rect(self.display, (0, 0, 0), (150 + 200 * j-7, 180 + 230 * i-7, 150+14, 150+14), 7, 3)
                 image = self.item.images_crafter[i*3+j]
                 self.display.blit(image, (150 + 200 * j, 180 + 230 * i, 150, 150))
                 self.drawer_text(16, f'{self.item.items_crafter_names[i*3+j]}', 'Black', (150 + 200 * j, 145 + 240 * i))

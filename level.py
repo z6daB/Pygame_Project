@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 from player import Player
-from tile import Tile
+from tile import Tile, InteractiveTile
 from imports import *
 from zombie import Zombie
 from interface import Interface
@@ -32,7 +32,7 @@ class Level:
                         y = row_index * TILESIZE
                         if style == 'border':
                             if col == '291' or col == '292':
-                                self.searched_items.append(Tile((x, y), self.invisible_sprites, 'invisible'))
+                                self.searched_items.append(InteractiveTile((x, y), self.invisible_sprites, 'invisible'))
                             Tile((x, y), self.invisible_sprites, 'invisible')
                         if style == 'creature':
                             if col == '0':
@@ -49,7 +49,7 @@ class Level:
         distances = []
         for item in self.searched_items:
             lenght = self.get_lenght_between_objects(obj, item)
-            if distance == 0 or lenght <= distance:
+            if (distance == 0 or lenght <= distance) and item.is_interact:
                 distances.append((lenght, item))
         distances.sort()
         return distances
