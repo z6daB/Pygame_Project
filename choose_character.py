@@ -7,6 +7,7 @@ from settings import *
 from drawer import *
 from player import Player
 from support import set_character
+from game import Game
 
 
 class ChooseCharacter(GameScreen):
@@ -29,18 +30,24 @@ class ChooseCharacter(GameScreen):
             if self.button.button_back2().collidepoint(event.pos):
                 ChangeScreen('menu')
             if self.button.button_black_man().collidepoint(event.pos):
+                self.game = Game()
+                dict_screens['game'] = self.game
                 set_character('black_man')
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
                            **black_man))
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
+                self.game = Game()
+                dict_screens['game'] = self.game
                 set_character('woman')
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
                            **woman))
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
+                self.game = Game()
+                dict_screens['game'] = self.game
                 set_character('white_man')
                 dict_screens['game'].level.spawn_player(
                     Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
