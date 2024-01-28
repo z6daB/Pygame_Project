@@ -15,10 +15,6 @@ class Interface:
         self.weapon = Weapon()
         self.display = pygame.display.get_surface()
 
-
-        self.cnt_bullet = 15
-        self.cnt_bullet_max = 30
-
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
 
@@ -71,9 +67,6 @@ class Interface:
         else:
             self.button.inventory_button_draw()
 
-        self.drawer.drawer_text(
-            15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
-
     def draw_memories(self, game):
         self.memories_value = game.level.player.memories_value
         pygame.draw.rect(
@@ -106,3 +99,17 @@ class Interface:
         weapon_index = self.game.level.player.weapon_index
         pygame.draw.rect(self.display, (131, 131, 89), (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 120, 256, 128))
         self.display.blit(weapon_images[weapon_index], (WINDOW_WIDTH - 250, WINDOW_HEIGHT - 115))
+        if dict_screens['game'].level.player.weapon_item == 'handgun':
+            elem = dict_screens['game'].level.player.weapon_have
+            for i in range(len(elem)):
+                if elem[i][0] == 'handgun':
+                    self.drawer.drawer_text(
+                        15, f"{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}", 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+                    break
+        elif dict_screens['game'].level.player.weapon_item == 'gun':
+            elem = dict_screens['game'].level.player.weapon_have
+            for i in range(len(elem)):
+                if elem[i][0] == 'gun':
+                    self.drawer.drawer_text(
+                        15, f"{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}", 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+                    break

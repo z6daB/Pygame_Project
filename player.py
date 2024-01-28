@@ -94,6 +94,31 @@ class Player(Creature):
             self.search_status = True
             self.search()
 
+        if keys[pygame.K_r]:
+            self.recharge()
+
+    def recharge(self):
+        if self.weapon_item == 'handgun':
+            for i in range(len(self.weapon_have)):
+                if self.weapon_have[i][0] == 'handgun':
+                    if self.bullets_have >= 15 - self.weapon_have[i][1]:
+                        self.bullets_have -= (15 - self.weapon_have[i][1])
+                        self.weapon_have[i][1] = 15
+                    else:
+                        self.weapon_have[i][1] = self.bullets_have + self.weapon_have[i][1]
+                        self.bullets_have = 0
+                    self.weapon_have[i][2] = self.bullets_have
+        elif self.weapon_item == 'gun':
+            for i in range(len(self.weapon_have)):
+                if self.weapon_have[i][0] == 'gun':
+                    if self.bullets_have >= 30 - self.weapon_have[i][1]:
+                        self.bullets_have -= (30 - self.weapon_have[i][1])
+                        self.weapon_have[i][1] = 30
+                    else:
+                        self.weapon_have[i][1] = self.bullets_have + self.weapon_have[i][1]
+                        self.bullets_have = 0
+                    self.weapon_have[i][2] = self.bullets_have
+
     def animation(self):
         images = [
             '1.png', '2.png', '3.png', '4.png'
@@ -170,7 +195,7 @@ class Player(Creature):
 
     def adding_items(self):
         num = random()
-        if 1 - num <= 0.15:
+        if 1 - num <= 0.07:
             self.memories_value += 1
         items = choices(self.item_have, k=3)
         for item in items:

@@ -1,4 +1,5 @@
 import sys
+from random import choices, random
 import pygame
 from screen import GameScreen
 from game_screens import dict_screens, ChangeScreen
@@ -85,6 +86,10 @@ class Crafter(GameScreen):
                                 dict_screens['game'].level.player.weapon_have[i][3] = 1
                     elif self.active_now == 6:
                         dict_screens['game'].level.player.bullets_have += 5
+
+                    num = random()
+                    if 1 - num <= 0.04:
+                        dict_screens['game'].level.player.memories_value += 1
                 else:
                     self.status_res = -1
 
