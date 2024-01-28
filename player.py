@@ -3,8 +3,8 @@ from settings import *
 from support import get_character
 from creature import Creature
 from game_screens import dict_screens, ChangeScreen
-from weapon import Weapon
-from random import choices
+from weapon import Weapon, Bullet
+from random import choices, random
 
 
 class Player(Creature):
@@ -34,6 +34,7 @@ class Player(Creature):
         self.radiation_value = radiation_value
         self.speed = speed
         self.name = name
+        self.memories_value = 0
 
         self.folder = name
         self.image = pygame.image.load(f'graphics/characters/{self.folder}/right/1.png').convert_alpha()
@@ -46,6 +47,7 @@ class Player(Creature):
         self.start_ticks = pygame.time.get_ticks()
         self.tick_interval = 5000
         self.attack_status = False
+        self.shoot_status = False
         self.search_status = False
 
     def spawn(self, pos):
@@ -74,6 +76,12 @@ class Player(Creature):
             self.direction.x = 0
             self.direction.y = 0
             self.attack_ticks = pygame.time.get_ticks()
+
+        if pygame.mouse.get_pressed()[0]:
+            self.shoot_status = True
+            self.direction.x = 0
+            self.direction.y = 0
+            self.mouse_pos = pygame.mouse.get_pos()
 
         if keys[pygame.K_1]:
             self.weapon_index = 0
@@ -117,11 +125,19 @@ class Player(Creature):
             zombie[1].get_damage(self.weapon_data[self.weapon_item]['damage'])
 
     def delay(self):
-        if self.attack_status:
-            if self.attack_ticks - self.start_ticks > self.weapon_data[self.weapon_item]['cooldown']:
-                self.attack_status = False
-                self.attack()
-                self.start_ticks = self.attack_ticks
+        if self.weapon_item == 'stick':
+            if self.attack_status:
+                if self.attack_ticks - self.start_ticks > self.weapon_data[self.weapon_item]['cooldown']:
+                    self.attack_status = False
+                    self.attack()
+                    self.start_ticks = self.attack_ticks
+        else:
+            # if self.shoot_status:
+            #     self.shoot_status = False
+            self.shoot()
+
+    def shoot(self):
+        bullet = Bullet(self.hitbox.center, pygame.mouse.get_pos())
 
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
@@ -153,10 +169,17 @@ class Player(Creature):
                 self.adding_items()
 
     def adding_items(self):
+        num = random()
+        if 1 - num <= 0.15:
+            self.memories_value += 1
         items = choices(self.item_have, k=3)
         for item in items:
             item[1] += 1
             print(item)
+
+    def check_memories(self):
+        if self.memories_value == 5:
+            ChangeScreen('final')
 
     def update(self):
         self.keyboard_buttons()
@@ -166,3 +189,4 @@ class Player(Creature):
         self.update_stats()
         self.update_weapon_item()
         self.search()
+        self.check_memories()

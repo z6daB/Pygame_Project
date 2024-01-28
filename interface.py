@@ -14,7 +14,7 @@ class Interface:
         self.button = Button()
         self.weapon = Weapon()
         self.display = pygame.display.get_surface()
-        self.memories_value = 4
+
 
         self.cnt_bullet = 15
         self.cnt_bullet_max = 30
@@ -58,6 +58,7 @@ class Interface:
         pygame.draw.rect(
             self.display, (255, 222, 0), (400, 45, 100 * self.memories_value, 55)
         )
+
         # count
         self.drawer.drawer_text(12, f'{min(100, self.game.level.player.hp_value)} / 100', 'White', (75, 605))
         self.drawer.drawer_text(12, f'{min(100, self.game.level.player.water_value)} / 100', 'White', (75, 635))
@@ -76,6 +77,13 @@ class Interface:
 
         self.drawer.drawer_text(
             15, f'{self.cnt_bullet} / {self.cnt_bullet_max}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+
+    def draw_memories(self, game):
+        self.memories_value = game.level.player.memories_value
+        pygame.draw.rect(
+            self.display, (255, 222, 0), (400, 45, 100 * self.memories_value, 55)
+        )
+        self.drawer.drawer_text(24, f'{self.memories_value} / 5', 'White', (575, 60))
 
     def event_loop(self):
         for event in pygame.event.get():

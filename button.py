@@ -277,3 +277,12 @@ class Button:
         self.surf_play = self.font.render('Crafter', True, 'Black')
         pygame.draw.rect(self.display, (131, 131, 89), self.button_craft())
         self.display.blit(self.surf_play, (self.button_craft().x + 10, self.button_craft().y + 20))
+
+    def button_win(self):
+        button_win = pygame.Rect(WINDOW_WIDTH / 2 - 165, WINDOW_HEIGHT / 2 - 150, 210, 50)
+        return button_win
+
+    def button_win_draw(self):
+        self.surf_win = self.font.render('You won', True, 'Black')
+        pygame.draw.rect(self.display, (102, 102, 51), self.button_win())
+        self.display.blit(self.surf_win, (self.button_win().x, self.button_win().y + 10))
