@@ -88,6 +88,7 @@ class Level:
         self.interface.draw_minimap()
         self.interface.event_loop()
         self.interface.draw_weapon()
+        self.interface.draw_memories(self.game)
 
 
 class CameraGroup(pygame.sprite.Group):

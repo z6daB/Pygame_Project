@@ -9,6 +9,7 @@ from drawer import *
 from button import Button
 from drawer import *
 
+
 class Inventory(GameScreen):
     def __init__(self):
         self.display = pygame.display.get_surface()
