@@ -77,6 +77,8 @@ class Player(Creature):
 
         if pygame.mouse.get_pressed()[0]:
             self.shoot_status = True
+            self.direction.x = 0
+            self.direction.y = 0
             self.mouse_pos = pygame.mouse.get_pos()
 
         if keys[pygame.K_1]:
@@ -128,12 +130,12 @@ class Player(Creature):
                     self.attack()
                     self.start_ticks = self.attack_ticks
         else:
-            if self.shoot_status:
-                self.shoot_status = False
-                self.shoot()
+            # if self.shoot_status:
+            #     self.shoot_status = False
+            self.shoot()
 
     def shoot(self):
-        self.bullet = Bullet(self.hitbox, self.mouse_pos)
+        bullet = Bullet(self.hitbox.center, pygame.mouse.get_pos())
 
     def update_stats(self):
         current_ticks = pygame.time.get_ticks()
@@ -175,7 +177,7 @@ class Player(Creature):
 
     def check_memories(self):
         if self.memories_value == 5:
-            print('win')
+            ChangeScreen('final')
 
     def update(self):
         self.keyboard_buttons()

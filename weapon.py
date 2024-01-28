@@ -29,7 +29,6 @@ class Bullet:
         self.speed = 8
 
     def draw(self):
-        print('update')
         self.display.blit(self.image_bullet, (self.x, self.y))
         self.update_pos()
 
@@ -43,12 +42,13 @@ class Bullet:
         direction = self.get_direction()
         self.x += direction.x * self.speed
         self.y += direction.y * self.speed
+        print('update')
 
     def update(self):
         self.draw()
-        direction = self.get_direction()
-        if direction.x == 0 and direction.y == 0:
-            self.kill()
+        # direction = self.get_direction()
+        # if direction.x == 0 and direction.y == 0:
+        #     self.kill()
 
 
 

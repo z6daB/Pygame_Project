@@ -14,6 +14,7 @@ import settings_window
 import level
 from game import Game
 import loss_screen
+import final_window
 
 
 class Main:
