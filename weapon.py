@@ -49,6 +49,3 @@ class Bullet:
         # direction = self.get_direction()
         # if direction.x == 0 and direction.y == 0:
         #     self.kill()
-
-
-

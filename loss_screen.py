@@ -32,19 +32,16 @@ class DeadWindow(GameScreen):
                 name = get_character()
                 if name == 'black_man':
                     dict_screens['game'].level.spawn_player(
-                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
-                               self.game,
-                               **black_man))
+                        Player(dict_screens['game'].level.visible_sprites,
+                               dict_screens['game'].level.invisible_sprites, self.game, 0, 1, 1, **black_man))
                 elif name == 'white_man':
                     dict_screens['game'].level.spawn_player(
-                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
-                               self.game,
-                               **white_man))
+                        Player(dict_screens['game'].level.visible_sprites,
+                               dict_screens['game'].level.invisible_sprites, self.game, 0, 1, 1, **white_man))
                 else:
                     dict_screens['game'].level.spawn_player(
-                        Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites,
-                               self.game,
-                               **woman))
+                        Player(dict_screens['game'].level.visible_sprites,
+                               dict_screens['game'].level.invisible_sprites, self.game, 0, 0, 1, **woman))
                 ChangeScreen('load')
 
     def draw(self):

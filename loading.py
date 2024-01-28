@@ -17,7 +17,7 @@ class Load(GameScreen):
         self.font = pygame.font.Font('graphics/menu/font.ttf', 30)
         self.surf_back = self.font.render('   Loading...', True, 'Black')
         self.display.blit(self.surf_back, (WINDOW_WIDTH // 2 - 240, 260))
-        
+
         pygame.draw.rect(self.display, (255, 255, 255), (WINDOW_WIDTH // 2 - 325, 315, 600, 50), 10, 20)
         if self.cnt != 595:
             pygame.draw.rect(self.display, (255, 255, 255), (WINDOW_WIDTH // 2 - 320, 325, self.cnt, 30), 0, 20)
