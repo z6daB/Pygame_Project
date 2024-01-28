@@ -58,18 +58,24 @@ class Drawer:
         self.weapon_have = dict_screens['game'].level.player.weapon_have
         self.item_have = dict_screens['game'].level.player.item_have
         self.drawer_text(28, 'Доступные Оружия', 'Black', (120, 120))
+        ii = len(self.weapon_have) - 1
         for i in range(len(self.weapon_have) - 1, -1, -1):
-            image = self.weapon.images[self.weapon.weapon_items.index(self.weapon_have[i][0])]
-            self.display.blit(image, (150 + 325 * (len(self.weapon_have) - i - 1), 175))
-            if self.weapon_have[i][0] != 'stick':
-                self.drawer_text(16, f'{self.weapon_have[i][1]}/{self.weapon_have[i][2]}', 'Black',
-                                 (150 + 325 * (len(self.weapon_have) - i - 1) + 200, 275))
+            if self.weapon_have[i][3] == 1:
+                image = self.weapon.images[self.weapon.weapon_items.index(self.weapon_have[i][0])]
+                self.display.blit(image, (150 + 325 * (len(self.weapon_have) - ii - 1), 175))
+                if self.weapon_have[i][0] != 'stick':
+                    self.drawer_text(16, f'{self.weapon_have[i][1]}/{self.weapon_have[i][2]}', 'Black',
+                                     (150 + 325 * (len(self.weapon_have) - ii - 1) + 200, 275))
+                ii -= 1
         self.drawer_text(28, 'Доступные Предметы', 'Black', (120, 350))
+        ii = 0
         for i in range(len(self.item_have)):
-            pygame.draw.rect(self.display, (0, 0, 0), (140 + 200 * i - 7, 425 - 7, 150 + 14, 150 + 14), 7, 3)
-            image = self.item.images[self.item.items.index(self.item_have[i][0])]
-            self.display.blit(image, (140 + 200 * i, 425, 150, 150))
-            self.drawer_text(18, f'{self.item_have[i][1]} шт.', 'Black', (185 + 200 * i, 600))
+            if self.item_have[i][1] > 0:
+                pygame.draw.rect(self.display, (0, 0, 0), (140 + 200 * ii - 7, 425 - 7, 150 + 14, 150 + 14), 7, 3)
+                image = self.item.images[self.item.items.index(self.item_have[i][0])]
+                self.display.blit(image, (140 + 200 * ii, 425, 150, 150))
+                self.drawer_text(18, f'{self.item_have[i][1]} шт.', 'Black', (185 + 200 * ii, 600))
+                ii += 1
 
     def crafter_draw(self):
         for i in range(2):

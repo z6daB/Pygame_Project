@@ -20,12 +20,14 @@ class Player(Creature):
         self.weapon_item = self.weapon_items[self.weapon_index]
 
         self.weapon_have = [
-            ['gun', 0, 0], ['handgun', 0, 0], ['stick', 0, 0]
+            ['gun', 0, 0, 1], ['handgun', 0, 0, 1], ['stick', 0, 0, 1]
         ]
 
         self.item_have = [
-            ['wood', 0], ['iron', 0], ['kumquat', 0], ['gasmask', 0], ['medicinal_substances', 0]
+            ['wood', 1], ['iron', 1], ['kumquat', 1], ['gasmask', 1], ['medicinal_substances', 1]
         ]
+
+        self.bullets_have = 0
 
         # stats
         self.water_value = water_value
