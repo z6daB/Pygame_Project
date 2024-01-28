@@ -46,7 +46,6 @@ class Inventory(GameScreen):
         else:
             self.button.inventory_back_button_draw()
         self.drawer.inventory_draw()
-        
 
 
 dict_screens['inventory'] = Inventory()

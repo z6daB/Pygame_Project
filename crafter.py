@@ -141,7 +141,7 @@ class Crafter(GameScreen):
             self.button.button_craft_draw_hover()
         else:
             self.button.button_craft_draw()
-        #buy result
+        # buy result
         if self.status_res == 1:
             self.display.blit(self.res_yes, (1060, 605))
         elif self.status_res == -1:

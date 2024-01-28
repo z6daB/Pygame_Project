@@ -15,7 +15,6 @@ class Interface:
         self.weapon = Weapon()
         self.display = pygame.display.get_surface()
 
-
         self.cnt_bullet = 15
         self.cnt_bullet_max = 30
 

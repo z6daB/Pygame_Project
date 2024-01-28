@@ -34,24 +34,24 @@ class ChooseCharacter(GameScreen):
                 dict_screens['game'] = self.game
                 set_character('black_man')
                 dict_screens['game'].level.spawn_player(
-                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
-                           **black_man))
+                    Player(dict_screens['game'].level.visible_sprites,
+                           dict_screens['game'].level.invisible_sprites, self.game, 0, 1, 1, **black_man))
                 ChangeScreen('load')
             elif self.button.button_woman().collidepoint(event.pos):
                 self.game = Game()
                 dict_screens['game'] = self.game
                 set_character('woman')
                 dict_screens['game'].level.spawn_player(
-                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
-                           **woman))
+                    Player(dict_screens['game'].level.visible_sprites,
+                           dict_screens['game'].level.invisible_sprites, self.game, 0, 0, 1, **woman))
                 ChangeScreen('load')
             elif self.button.button_white_man().collidepoint(event.pos):
                 self.game = Game()
                 dict_screens['game'] = self.game
                 set_character('white_man')
                 dict_screens['game'].level.spawn_player(
-                    Player(dict_screens['game'].level.visible_sprites, dict_screens['game'].level.invisible_sprites, self.game,
-                           **white_man))
+                    Player(dict_screens['game'].level.visible_sprites,
+                           dict_screens['game'].level.invisible_sprites, self.game, 0, 1, 1, **white_man))
                 ChangeScreen('load')
 
     def draw(self):
@@ -60,34 +60,31 @@ class ChooseCharacter(GameScreen):
         woman = pygame.image.load('graphics/menu/characters/woman.png')
         white_man = pygame.image.load('graphics/menu/characters/white_man.png')
         self.display.blit(self.bg, (0, 0))
-        #black_man
+        # black_man
         if self.button.button_black_man().collidepoint(pygame.mouse.get_pos()):
             self.button.button_black_man_draw_hover()
         else:
             self.button.button_black_man_draw()
         self.drawer.black_man_stat_draw()
-        #woman
+        # woman
         if self.button.button_woman().collidepoint(pygame.mouse.get_pos()):
             self.button.button_woman_draw_hover()
         else:
             self.button.button_woman_draw()
         self.drawer.woman_stat_draw()
-        #white_man
+        # white_man
         if self.button.button_white_man().collidepoint(pygame.mouse.get_pos()):
             self.button.button_white_man_draw_hover()
         else:
             self.button.button_white_man_draw()
         self.drawer.white_man_stat_draw()
-        
+
         self.display.blit(black_man, (150, 145))
         self.display.blit(woman, (550, 145))
         self.display.blit(white_man, (950, 145))
-        
+
         self.drawer.title_draw()
         if self.button.button_back2().collidepoint(pygame.mouse.get_pos()):
             self.button.button_back_draw_hover2()
         else:
             self.button.button_back_draw2()
-
-
-

@@ -8,7 +8,8 @@ from random import choices, random
 
 
 class Player(Creature):
-    def __init__(self, groups, invisible_sprites, game, hp_value, water_value, radiation_value, speed, name):
+    def __init__(self, groups, invisible_sprites, game, having_gun, having_handgun, having_stick, hp_value, water_value,
+                 radiation_value, speed, name):
         super().__init__(hp_value, groups, game)
         self.zombies = dict_screens['game'].level.zombies
 
@@ -18,13 +19,17 @@ class Player(Creature):
         self.weapon_items = self.weapon.weapon_items
         self.weapon_index = 2
         self.weapon_item = self.weapon_items[self.weapon_index]
+        self.having_gun = having_gun
+        self.having_handgun = having_handgun
+        self.having_stick = having_stick
 
         self.weapon_have = [
-            ['gun', 0, 0, 1], ['handgun', 0, 0, 1], ['stick', 0, 0, 1]
+            ['gun', 0, 0, self.having_gun], ['handgun', bullets_have, 0, self.having_handgun],
+            ['stick', 0, 0, self.having_stick]
         ]
 
         self.item_have = [
-            ['wood', 1], ['iron', 1], ['kumquat', 1], ['gasmask', 1], ['medicinal_substances', 1]
+            ['wood', 0], ['iron', 0], ['kumquat', 0], ['gasmask', 0], ['medicinal_substances', 0]
         ]
 
         self.bullets_have = 0
@@ -84,11 +89,14 @@ class Player(Creature):
             self.mouse_pos = pygame.mouse.get_pos()
 
         if keys[pygame.K_1]:
-            self.weapon_index = 0
+            if self.having_gun == 1:
+                self.weapon_index = 0
         elif keys[pygame.K_2]:
-            self.weapon_index = 1
+            if self.having_handgun == 1:
+                self.weapon_index = 1
         elif keys[pygame.K_3]:
-            self.weapon_index = 2
+            if self.having_stick == 1:
+                self.weapon_index = 2
 
         if keys[pygame.K_f]:
             self.search_status = True
@@ -170,7 +178,7 @@ class Player(Creature):
 
     def adding_items(self):
         num = random()
-        if 1 - num <= 0.15:
+        if 1 - num <= 0.07:
             self.memories_value += 1
         items = choices(self.item_have, k=3)
         for item in items:
