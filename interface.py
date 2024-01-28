@@ -104,12 +104,12 @@ class Interface:
             for i in range(len(elem)):
                 if elem[i][0] == 'handgun':
                     self.drawer.drawer_text(
-                        15, f'{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+                        15, f"{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}", 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
                     break
         elif dict_screens['game'].level.player.weapon_item == 'gun':
             elem = dict_screens['game'].level.player.weapon_have
             for i in range(len(elem)):
                 if elem[i][0] == 'gun':
                     self.drawer.drawer_text(
-                        15, f'{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}', 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
+                        15, f"{elem[i][1]} / {dict_screens['game'].level.player.bullets_have}", 'White', (WINDOW_WIDTH - 230, WINDOW_HEIGHT - 115))
                     break
