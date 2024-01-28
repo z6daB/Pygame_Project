@@ -24,7 +24,7 @@ class Player(Creature):
         self.having_stick = having_stick
 
         self.weapon_have = [
-            ['gun', 0, 0, self.having_gun], ['handgun', bullets_have, 0, self.having_handgun],
+            ['gun', 0, 0, self.having_gun], ['handgun', 0, 0, self.having_handgun],
             ['stick', 0, 0, self.having_stick]
         ]
 
