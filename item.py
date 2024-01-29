@@ -26,10 +26,10 @@ class Item:
         ]
 
         self.formula_craft = {
-            'pill_health': [['medicinal_substances', 5]],
+            'pill_health': [['medicinal_substances', 6]],
             'gasmaskAll': [['iron', 1], ['gasmask', 1]],
-            'pill_water': [['kumquat', 3]],
-            'glock': [['iron', 5]],
-            'ak47': [['iron', 7], ['wood', 4]],
-            'bullet': [['iron', 1], ['wood', 1]]
+            'pill_water': [['kumquat', 5]],
+            'glock': [['iron', 8]],
+            'ak47': [['iron', 13], ['wood', 7]],
+            'bullet': [['iron', 3], ['wood', 2]]
         }

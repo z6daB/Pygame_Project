@@ -50,7 +50,7 @@ class Player(Creature):
         self.invisible_sprites = invisible_sprites
 
         self.start_ticks = pygame.time.get_ticks()
-        self.tick_interval = 5000
+        self.tick_interval = 8000
         self.attack_status = False
         self.shoot_status = False
         self.search_status = False
@@ -185,8 +185,8 @@ class Player(Creature):
                     self.hp_value -= 1
 
                 if self.radiation_value < 100:
-                    self.radiation_value += 5
-                elif self.radiation_value == 100:
+                    self.radiation_value += 2
+                elif self.radiation_value >= 100:
                     self.hp_value -= 1
                 self.start_ticks = current_ticks
 
