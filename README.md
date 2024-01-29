@@ -4,6 +4,10 @@
 Но потом он понимает, что еда и вода у него заканчивается, и что он долго так не протянет. 
 Он начинает звонить другу, чтобы он его спас, так как сам не может выбраться, потому что умрет от радиации. 
 Герой отправляется за своим другом в Чернобыль...
+## Управление
++ wasd или стрелочки - ходьба
++ f - обыскивание досок
++ r - перезарядка оружия
 ## Необходимые библиотеки:
 + pygame
 + sys
@@ -31,6 +35,10 @@ The main character saves his friend. A friend does not want to leave because all
 But then he realizes that he is running out of food and water, and that he will not last long.
 And he calls a friend to save him, since he himself cannot get out because he will die from radiation.
 The hero goes after his friend to Chernobyl...
+## Control
++ wasd or arrows - walking
++ f - searching boards
++ r - weapon reload
 ## Required libraries:
 + pygame
 + sys
